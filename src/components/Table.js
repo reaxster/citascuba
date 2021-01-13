@@ -1,19 +1,19 @@
 import React from "react";
-import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
-import TableRow from "./TableRow";
+import { MDBDataTable } from "mdbreact";
+import DatabaseFeed from "../Utils/DatabaseFeed";
+import "./components.css";
 
 export default (props) => {
   return (
-    <MDBTable hover>
-      <MDBTableHead>
-        <tr>
-          <th>#</th>
-          <th>First</th>
-          <th>Last</th>
-          <th>Handle</th>
-        </tr>
-      </MDBTableHead>
-      <TableRow />
-    </MDBTable>
+    <div>
+      <MDBDataTable
+        hover
+        bordered
+        small
+        striped
+        data={DatabaseFeed.data}
+        className="d-flex flex-column d-inline"
+      />
+    </div>
   );
 };

@@ -4,13 +4,11 @@ import { MDBTableBody } from "mdbreact";
 export default (props) => {
   const rows = (
     <tr>
-      <td>Record Number</td>
-      <td>Nombre Y Apellidos</td>
-      <td>Visa Type</td>
-      <td>Email</td>
-      <td>Caso Cerrado</td>
-      <td>Expedite</td>
-      <td>Entrevista Date</td>
+      <td>07261996</td>
+      <td>H2B</td>
+      <td>05/18/2021</td>
+      <td>NO</td>
+      <td>10/30/2020</td>
     </tr>
   );
 
