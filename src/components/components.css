@@ -102,3 +102,25 @@
   box-shadow: 0px 0px 5px 5px rgba(173, 20, 87, 0.1);
   border-radius: 5px;
 }
+
+/*
+Database:
+
+-Fecha De Nacimiento
+-Nombre
+-Apellido
+-Tipo De Visa
+-Email
+-Caso Cerrado
+-Expedite
+-Entrevista
+-Count (true/False)
+
+
+Nombre Y Apellidos
+Visa Type
+Expedited
+DOB
+CC
+ENT
+email*/
