@@ -25,7 +25,7 @@ export default (props) => {
     <div>
       <form className="needs-validation" onSubmit={submitHandler} noValidate>
         <MDBRow>
-          <MDBCol md="3">
+          <MDBCol md="4">
             <MDBInput
               value={state.name}
               name="name"
@@ -37,7 +37,7 @@ export default (props) => {
               <div className="valid-tooltip">Looks good!</div>
             </MDBInput>
           </MDBCol>
-          <MDBCol md="3">
+          <MDBCol md="4">
             <MDBInput
               value={state.dob}
               name="dob"
@@ -50,36 +50,34 @@ export default (props) => {
               <div className="valid-tooltip">Looks good!</div>
             </MDBInput>
           </MDBCol>
-          <MDBCol md="3">
+          <MDBCol md="4">
             <MDBInput
-              value={state.email}
+              value={state.visa}
+              name="visa"
               onChange={changeHandler}
-              type="email"
-              id="materialFormRegisterConfirmEx3"
-              name="email"
-              label="Your Email address"
-            />
+              type="text"
+              id="materialFormRegisterEmailEx2"
+              label="Tipo de Visa"
+              placeholder="17/17/2015"
+              required
+            >
+              <div className="invalid-tooltip">
+                Please provide a valid city.
+              </div>
+              <div className="valid-tooltip">Looks good!</div>
+            </MDBInput>
           </MDBCol>
         </MDBRow>
         <MDBRow>
-          <MDBCol md="3">
-            <select className="browser-default custom-select" required>
-              <option value="0">Seleccione Su Tipo De Visa</option>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
-            </select>
-            <div className="invalid-tooltip">Please provide a valid city.</div>
-            <div className="valid-tooltip">Looks good!</div>
-          </MDBCol>
-          <MDBCol md="3">
+          <MDBCol md="4">
             <MDBInput
               value={state.cc}
-              name="dob"
+              name="cc"
               onChange={changeHandler}
               type="date"
               id="materialFormRegisterEmailEx2"
               label="Fecha De Caso Cerrado"
+              placeholder="17/17/2015"
               required
             >
               <div className="invalid-tooltip">
@@ -88,7 +86,7 @@ export default (props) => {
               <div className="valid-tooltip">Looks good!</div>
             </MDBInput>
           </MDBCol>
-          <MDBCol md="3">
+          <MDBCol md="4">
             <MDBInput
               value={state.ent}
               onChange={changeHandler}
@@ -102,19 +100,8 @@ export default (props) => {
               <div className="valid-tooltip">Looks good!</div>
             </MDBInput>
           </MDBCol>
-          <MDBCol md="3">
-            <MDBInput
-              value={state.exp}
-              onChange={changeHandler}
-              type="text"
-              id="materialFormRegisterPasswordEx4"
-              name="ent"
-              label="Expedited"
-              required
-            >
-              <div className="invalid-tooltip">Please provide a valid zip.</div>
-              <div className="valid-tooltip">Looks good!</div>
-            </MDBInput>
+          <MDBCol md="4" className="test">
+            <input type="checkbox" />
           </MDBCol>
         </MDBRow>
         <MDBBtn color="success" type="submit">
