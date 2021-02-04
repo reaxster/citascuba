@@ -11,7 +11,7 @@ export default () => {
     <ReportedVisas data={data} />
   ));
   return (
-    <div className="test">
+    <div>
       <MDBContainer className="bringToFront">
         <h1>Bienvenido a nuestra pagina web. </h1>
         <h2>
