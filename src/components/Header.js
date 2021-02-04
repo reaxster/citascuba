@@ -7,6 +7,7 @@ import {
   MDBNavLink,
   MDBNavbarToggler,
   MDBCollapse,
+  MDBIcon,
 } from "mdbreact";
 import { Link } from "react-router-dom";
 import "./components.css";
@@ -93,7 +94,9 @@ const Header = () => {
           onClick={handleHomeClick}
           active={active.home}
         >
-          <strong>Home</strong>
+          <strong>
+            <MDBIcon icon="home" size="1x" />
+          </strong>
         </MDBNavLink>
       </MDBNavbarBrand>
       <MDBNavbarToggler onClick={toggleCollapse} />
