@@ -6,8 +6,9 @@ import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import FormPage from "./pages/FormPage";
 import TablePage from "./pages/TablePage";
-import WaitingTimePAge from "./pages/WaitingTimePAge";
+import InterviewSummary from "./pages/InterviewSummary";
 import DisclosurePage from "./pages/DisclosurePage";
+import News from "./pages/News";
 
 function App() {
   return (
@@ -18,10 +19,11 @@ function App() {
           <Route exact path="/" component={() => <HomePage />}></Route>
           <Route exact path="/form" component={() => <FormPage />}></Route>
           <Route exact path="/table" component={() => <TablePage />}></Route>
+          <Route exact path="/news" component={() => <News />}></Route>
           <Route
             exact
-            path="/waitingtimes"
-            component={() => <WaitingTimePAge />}
+            path="/interviewsummary"
+            component={() => <InterviewSummary />}
           ></Route>
           <Route
             exact

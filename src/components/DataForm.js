@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 import Note from "./Note";
 
@@ -12,6 +12,12 @@ export default (props) => {
     ent: "",
     exp: "",
   });
+
+  const [canSubmit, setCanSubmit] = useState(false);
+
+  /*const [captcha, setCaptcha] = useState({
+    fistN
+  })*/
 
   const formHandler = (event) => {
     setState({ [event.target.name]: event.target.value });
@@ -32,6 +38,22 @@ export default (props) => {
       "Si su visa es expedited, no olvide marcarlo en la ultima parte",
     ],
   };
+
+  const [catcha, setCatcha] = useState({
+    firstDigit: "",
+    secondDigit: "",
+    userDigit: "",
+  });
+
+  const firstNumber = useRef(Math.floor(Math.random() * 10 + 1));
+  const secondNumber = useRef(Math.floor(Math.random() * 10 + 1));
+
+  useEffect(() => {
+    setCatcha({
+      firstDigit: firstNumber.current,
+      secondDigit: secondNumber.current,
+    });
+  }, []);
 
   return (
     <div
@@ -150,6 +172,19 @@ export default (props) => {
           </MDBBtn>
         </MDBRow>
       </form>
+      <div className="d-flex flex-column">
+        <div className="d-flex flex-row justify-content-center test">
+          <h2>{catcha.firstDigit}</h2>
+          <h2>+</h2>
+          <h2>{catcha.secondDigit}</h2>
+          <h2>=</h2>
+          <input
+            type="text"
+            className="mt-1"
+            style={{ width: 50, height: 30, fontSize: 25 }}
+          />
+        </div>
+      </div>
     </div>
   );
 };

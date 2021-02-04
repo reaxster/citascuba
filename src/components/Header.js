@@ -114,7 +114,10 @@ const Header = () => {
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem className="mx-2" active={active.waitingTimes}>
-            <MDBNavLink to="/waitingtimes" onClick={handleWaitingTimesClick}>
+            <MDBNavLink
+              to="/interviewsummary"
+              onClick={handleWaitingTimesClick}
+            >
               Waiting Times
             </MDBNavLink>
           </MDBNavItem>

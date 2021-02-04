@@ -2,7 +2,7 @@ import React from "react";
 import ReportedVisaFeed from "../Utils/ReportedVisaFeed";
 import ReportedVisas from "../components/ReportedVisas";
 
-export default () => {
+const InterviewSummary = () => {
   const reportedVisa = ReportedVisaFeed.data.map((data) => (
     <ReportedVisas data={data} />
   ));
@@ -15,3 +15,5 @@ export default () => {
     </div>
   );
 };
+
+export default InterviewSummary;
