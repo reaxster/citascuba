@@ -10,3 +10,5 @@ git push -u origin main
 git remote add origin https://github.com/reaxster/citascuba.git
 git branch -M main
 git push -u origin main
+
+git push https://github.com/reaxster/citascuba.git
