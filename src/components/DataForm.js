@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
 import Note from "./Note";
+import Test from "./Test";
 
 export default (props) => {
   const [state, setState] = useState({
@@ -23,15 +24,22 @@ export default (props) => {
     setState({ [event.target.name]: event.target.value });
   };
 
+  const hadnleName = (e) => {
+    setState({ name: e.target.value });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     event.target.className += " was-validated";
     console.log(state);
     //TODO: Complete the Chekking for all Fields and Submit
   };
+
   const notesData = {
     title: "Form Info",
     list: [
+      "asdasdas",
+      "sdasd",
       "Todos los Campos Deben de ser llenados apropiadamente.",
       "Despues de llenados, un administrador verificara su informacion y aceptara or denegara su peticion dependiendo si todos los datos entan correctamente",
       "IMPORTANTE: La fecha es introducida primero el MES, luego el DIA, y luego el año",
@@ -64,7 +72,6 @@ export default (props) => {
       <div className="mb-5">
         <Note data={notesData} />
       </div>
-
       <form className="needs-validation" onSubmit={handleSubmit} noValidate>
         <MDBRow>
           <MDBCol lg="4" className="mb-4">
@@ -185,6 +192,10 @@ export default (props) => {
           />
         </div>
       </div>
+      <Test acceder={state.name} />
+      <Test acceder={state.name} />
+      <Test acceder={state.name} />
+      <Test acceder={state.name} />
     </div>
   );
 };

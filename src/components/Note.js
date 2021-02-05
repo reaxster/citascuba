@@ -5,6 +5,7 @@ export default (props) => {
   const listData = props.data.list.map((item) => (
     <li style={{ textAlign: "left" }}>{item}</li>
   ));
+
   return (
     <div
       style={{ border: "#EF5350 3px solid", borderRadius: 10 }}
