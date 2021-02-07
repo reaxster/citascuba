@@ -5,7 +5,7 @@ import { MDBContainer } from "mdbreact";
 
 export default () => {
   return (
-    <MDBContainer className="shadow  my-5">
+    <MDBContainer className="jumbotron  my-5">
       <h1>Tabla De Fechas De Entrevista</h1>
       <TableLegend className="mb-5" />
 

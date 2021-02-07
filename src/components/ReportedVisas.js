@@ -11,12 +11,12 @@ import {
 
 export default (props) => {
   return (
-    <div className="mb-5">
+    <div className="mb-4">
       <MDBCol>
-        <MDBCard style={{ width: "22rem" }}>
+        <MDBCard>
           <div style={{ background: "#880E4F" }} className="p-2">
             <h2 style={{ color: "#fff" }}>
-              <strong>Visa {props.data.type}</strong>
+              <strong>Visa {props.data.visa}</strong>
             </h2>
           </div>
 

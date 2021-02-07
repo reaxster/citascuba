@@ -1,34 +1,57 @@
 import React, { useState, useRef, useEffect } from "react";
 import { MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
+import axios from "axios";
 import Note from "./Note";
+import useFormHook from "../hooks/useFormHook";
+import useToggle from "../hooks/useToggle";
+import { getDateForInput, convertToMMDDYYY } from "../Utils/Date/DateUtil";
+import CreateRecord from "../Utils/Components Utils/DataForm/CreateRecord";
 
 export default (props) => {
-  const [state, setState] = useState({
-    name: "",
-    dob: "",
-    email: "",
-    visa: "",
-    cc: "",
-    ent: "",
-    exp: "",
-  });
+  const [name, updateName, resetName] = useFormHook("");
+  const [dob, updateDOB, resetDOB] = useFormHook(getDateForInput());
+  const [email, updateEmail, resetEmail] = useFormHook("");
+  const [visa, updateVisa, resetVisa] = useFormHook("");
+  const [cc, updateCC, resetCC] = useFormHook(getDateForInput());
+  const [ent, updateEnt, resetEnt] = useFormHook(getDateForInput());
+  const [exp, updateExp] = useToggle(false);
 
   const [canSubmit, setCanSubmit] = useState(false);
-
-  /*const [captcha, setCaptcha] = useState({
-    fistN
-  })*/
-
-  const formHandler = (event) => {
-    setState({ [event.target.name]: event.target.value });
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     event.target.className += " was-validated";
-    console.log(state);
+    const dataToSubmit = {
+      name: name,
+      dob: convertToMMDDYYY(dob),
+      email: email,
+      visa: visa,
+      cc: convertToMMDDYYY(cc),
+      ent: convertToMMDDYYY(ent),
+      exp: exp ? "YES" : "NO",
+      record: CreateRecord(name, dob, ent),
+    };
+
+    console.log(dataToSubmit);
+
     //TODO: Complete the Chekking for all Fields and Submit
+
+    const postData = async () => {
+      try {
+        const resp = await axios.post(
+          "https://us-central1-citascuba-test.cloudfunctions.net/interview",
+          dataToSubmit
+        );
+        alert(resp.data);
+      } catch (err) {
+        if (err.response.status == 422) alert(err.response.data);
+        else alert(err);
+      }
+    };
+
+    postData();
   };
+
   const notesData = {
     title: "Form Info",
     list: [
@@ -39,22 +62,6 @@ export default (props) => {
     ],
   };
 
-  const [catcha, setCatcha] = useState({
-    firstDigit: "",
-    secondDigit: "",
-    userDigit: "",
-  });
-
-  const firstNumber = useRef(Math.floor(Math.random() * 10 + 1));
-  const secondNumber = useRef(Math.floor(Math.random() * 10 + 1));
-
-  useEffect(() => {
-    setCatcha({
-      firstDigit: firstNumber.current,
-      secondDigit: secondNumber.current,
-    });
-  }, []);
-
   return (
     <div
       style={{ padding: 50, border: "#C2185B 1px solid" }}
@@ -64,7 +71,6 @@ export default (props) => {
       <div className="mb-5">
         <Note data={notesData} />
       </div>
-
       <form className="needs-validation" onSubmit={handleSubmit} noValidate>
         <MDBRow>
           <MDBCol lg="4" className="mb-4">
@@ -75,8 +81,8 @@ export default (props) => {
               name="name"
               id="form-name"
               placeholder="Tu Nombre"
-              value={state.name}
-              onChange={formHandler}
+              value={name}
+              onChange={updateName}
               required
             />
           </MDBCol>
@@ -88,8 +94,8 @@ export default (props) => {
               name="email"
               id="form-email"
               placeholder="correo@domain.com"
-              value={state.email}
-              onChange={formHandler}
+              value={email}
+              onChange={updateEmail}
               required
             />
           </MDBCol>
@@ -100,8 +106,8 @@ export default (props) => {
               type="date"
               name="dob"
               id="form-dob"
-              value={state.dob}
-              onChange={formHandler}
+              value={dob}
+              onChange={updateDOB}
               required
             />
           </MDBCol>
@@ -114,8 +120,8 @@ export default (props) => {
               type="date"
               name="cc"
               id="form-cc"
-              value={state.cc}
-              onChange={formHandler}
+              value={cc}
+              onChange={updateCC}
               required
             />
           </MDBCol>
@@ -126,8 +132,8 @@ export default (props) => {
               type="date"
               name="ent"
               id="form-ent"
-              value={state.ent}
-              onChange={formHandler}
+              value={ent}
+              onChange={updateEnt}
               required
             />
           </MDBCol>
@@ -137,20 +143,25 @@ export default (props) => {
               className="form-control"
               name="visa"
               id="form-visa"
-              value={state.visa}
-              onChange={formHandler}
+              value={visa}
+              onChange={updateVisa}
               required
             >
               <option value=""></option>
               <option value="CR1/IR1">CR1/IR1</option>
-              <option value="IR2">IR2</option>
+              <option value="CR2/IR2">CR2/IR2</option>
               <option value="IR3">IR3</option>
               <option value="IR4">IR4</option>
               <option value="IR5">IR5</option>
               <option value="F1">F1</option>
-              <option value="F2">F2</option>
+              <option value="F2A">F2A</option>
+              <option value="F2B">F2B</option>
               <option value="F3">F3</option>
               <option value="F4">F4</option>
+              <option value="K1">K1</option>
+              <option value="K2">K2</option>
+              <option value="K3">K3</option>
+              <option value="K4">K4</option>
             </select>
           </MDBCol>
         </MDBRow>
@@ -162,8 +173,8 @@ export default (props) => {
             type="checkbox"
             name="exp"
             id="form-exp"
-            value={state.exp}
-            onChange={formHandler}
+            value={exp}
+            onChange={updateExp}
           />
         </MDBRow>
         <MDBRow className="d-flex justify-content-center">
@@ -172,19 +183,6 @@ export default (props) => {
           </MDBBtn>
         </MDBRow>
       </form>
-      <div className="d-flex flex-column">
-        <div className="d-flex flex-row justify-content-center test">
-          <h2>{catcha.firstDigit}</h2>
-          <h2>+</h2>
-          <h2>{catcha.secondDigit}</h2>
-          <h2>=</h2>
-          <input
-            type="text"
-            className="mt-1"
-            style={{ width: 50, height: 30, fontSize: 25 }}
-          />
-        </div>
-      </div>
     </div>
   );
 };

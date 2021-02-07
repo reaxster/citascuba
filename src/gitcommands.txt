@@ -9,5 +9,9 @@ git push -u origin main
 …or push an existing repository from the command line
 git remote add origin https://github.com/reaxster/citascuba.git
 git branch -M main
-git push -u origin git status
-git push https://github.com/reaxster/citascuba.git
+
+#PUSHING
+git push -u origin main
+
+#PULLING
+git pull https://github.com/reaxster/citascuba.git

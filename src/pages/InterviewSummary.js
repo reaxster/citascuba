@@ -1,18 +1,47 @@
-import React from "react";
-import ReportedVisaFeed from "../Utils/ReportedVisaFeed";
+import React, { useEffect, useState } from "react";
+import Loading from "../components/Loading";
 import ReportedVisas from "../components/ReportedVisas";
+import { MDBContainer } from "mdbreact";
+import axios from "axios";
 
 const InterviewSummary = () => {
-  const reportedVisa = ReportedVisaFeed.data.map((data) => (
-    <ReportedVisas data={data} />
-  ));
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let componentIsMounted = true;
+    const getAll = async () => {
+      try {
+        const res = await axios.get(
+          "https://us-central1-citascuba-test.cloudfunctions.net/interviewsSummary/"
+        );
+        if (componentIsMounted) {
+          setData(res.data);
+          setLoading(false);
+        }
+      } catch (err) {
+        // Handle Error Here
+        console.error(err);
+      }
+    };
+    getAll();
+    return () => (componentIsMounted = false);
+  }, []);
+
+  let reportedVisa = <Loading />;
+
+  if (!loading)
+    reportedVisa = data.map((item) => (
+      <ReportedVisas data={item} key={item.id} />
+    ));
+
   return (
-    <div>
+    <MDBContainer className="jumbotron  mt-5">
       <h1>Waiing Time Page Comes Here</h1>
       <div className="d-flex flex-row flex-wrap justify-content-center">
         {reportedVisa}
       </div>
-    </div>
+    </MDBContainer>
   );
 };
 
