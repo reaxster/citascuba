@@ -6,6 +6,7 @@ import useFormHook from "../hooks/useFormHook";
 import useToggle from "../hooks/useToggle";
 import { getDateForInput, convertToMMDDYYY } from "../Utils/Date/DateUtil";
 import CreateRecord from "../Utils/Components Utils/DataForm/CreateRecord";
+import CreateTimestamp from "../Utils/Components Utils/DataForm/CreateTimestamp";
 
 export default (props) => {
   const [name, updateName, resetName] = useFormHook("");
@@ -30,6 +31,7 @@ export default (props) => {
       ent: convertToMMDDYYY(ent),
       exp: exp ? "YES" : "NO",
       record: CreateRecord(name, dob, ent),
+      timestamp: CreateTimestamp(ent),
     };
 
     console.log(dataToSubmit);
@@ -39,13 +41,12 @@ export default (props) => {
     const postData = async () => {
       try {
         const resp = await axios.post(
-          "https://us-central1-citascuba-test.cloudfunctions.net/interview",
+          "http://127.0.0.1:5000/api/cases",
           dataToSubmit
         );
         alert(resp.data);
       } catch (err) {
-        if (err.response.status == 422) alert(err.response.data);
-        else alert(err);
+        alert(err);
       }
     };
 

@@ -12,9 +12,7 @@ const InterviewSummary = () => {
     let componentIsMounted = true;
     const getAll = async () => {
       try {
-        const res = await axios.get(
-          "https://us-central1-citascuba-test.cloudfunctions.net/interviewsSummary/"
-        );
+        const res = await axios.get("http://127.0.0.1:5000/api/cases/summary");
         if (componentIsMounted) {
           setData(res.data);
           setLoading(false);

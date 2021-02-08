@@ -15,19 +15,12 @@ export default (props) => {
     let componentIsMounted = true;
     const getAll = async () => {
       try {
-        const res = await axios.get(
-          "https://us-central1-citascuba-test.cloudfunctions.net/interview"
-        );
-        // console.log(res.data);
+        const res = await axios.get("http://127.0.0.1:5000/api/cases");
+        console.log(res.data.cases);
         if (componentIsMounted) {
-          setData(res.data);
+          setData(res.data.cases);
           setLoading(false);
         }
-
-        const res2 = await axios.get(
-          "https://us-central1-citascuba-test.cloudfunctions.net/interviewsSummary/"
-        );
-        console.log(res2.data);
       } catch (err) {
         // Handle Error Here
         console.error(err);

@@ -1,3 +1,7 @@
+/*
+ * ALL CONVERSTIONS NEED TO GET THE INPUT IN YYYY-MM-DD
+ * ****/
+
 const getDateElements = () => {
   const today = new Date();
   const dd = String(today.getDate()).padStart(2, "0");
@@ -49,6 +53,10 @@ const convertToMMDD = (str) => {
   return str.substr(5, 7);
 };
 
+const convertToYYMM = (str) => {
+  return str.substr(0, 4) + str.substr(4, 3);
+};
+
 export {
   getDateForInput,
   getDateDDMMYYY,
@@ -56,4 +64,5 @@ export {
   convertToMMDDYYY,
   convertToMMDD,
   convertToYY,
+  convertToYYMM,
 };
