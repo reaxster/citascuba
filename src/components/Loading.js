@@ -4,20 +4,12 @@ import Spinner from "react-spinner-material";
 export default () => {
   return (
     <>
-      <div className="spinner-grow text-primary" role="status">
-        <span className="sr-only">Loading...</span>
-      </div>
-      <div className="spinner-grow text-success" role="status">
-        <span className="sr-only">Loading...</span>
-      </div>
-      <div className="spinner-grow text-danger" role="status">
-        <span className="sr-only">Loading...</span>
-      </div>
-      <div className="spinner-grow text-warning" role="status">
-        <span className="sr-only">Loading...</span>
-      </div>
-      <div className="spinner-grow text-info" role="status">
-        <span className="sr-only">Loading...</span>
+      <div
+        className="spinner-border m-5"
+        role="status"
+        style={{ width: "13rem", height: "13rem", color: "#880E4F" }}
+      >
+        <span className="sr-only pink darken-4">Loading...</span>
       </div>
     </>
   );

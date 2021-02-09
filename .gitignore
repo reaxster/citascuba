@@ -19,6 +19,12 @@
 .env.production.local
 .idea
 
+#Firebase
+.firebase/
+.firebaserc
+.eslintcache
+firebase.json
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

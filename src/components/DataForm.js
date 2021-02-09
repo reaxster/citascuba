@@ -41,7 +41,11 @@ export default (props) => {
     const postData = async () => {
       try {
         const resp = await axios.post(
+<<<<<<< HEAD
           "http://127.0.0.1:5000/api/cases",
+=======
+          process.env.REACT_APP_BACKEND_URL,
+>>>>>>> ab2973cba0963869e5e3c58f06799db348cccf81
           dataToSubmit
         );
         alert(resp.data);

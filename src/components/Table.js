@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MDBDataTable } from "mdbreact";
 import DatabaseFeed from "../Utils/DatabaseFeed";
-import Axios_Table from "../Utils/Axios Requests/Axios_Table";
 import axios from "axios";
 import "./components.css";
 import TableNotes from "./TableNotes";
@@ -15,8 +14,15 @@ export default (props) => {
     let componentIsMounted = true;
     const getAll = async () => {
       try {
+<<<<<<< HEAD
         const res = await axios.get("http://127.0.0.1:5000/api/cases");
         console.log(res.data.cases);
+=======
+        const res = await axios.get(
+          process.env.REACT_APP_BACKEND_URL + "/cases/"
+        );
+        // console.log(res.data);
+>>>>>>> ab2973cba0963869e5e3c58f06799db348cccf81
         if (componentIsMounted) {
           setData(res.data.cases);
           setLoading(false);
