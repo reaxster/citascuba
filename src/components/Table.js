@@ -15,18 +15,14 @@ export default (props) => {
     const getAll = async () => {
       try {
         const res = await axios.get(
-          process.env.REACT_APP_BACKEND_URL + "/cases/"
+          process.env.REACT_APP_BACKEND_URL + "/cases"
         );
         // console.log(res.data);
+
         if (componentIsMounted) {
-          setData(res.data);
+          setData(res.data.cases);
           setLoading(false);
         }
-
-        const res2 = await axios.get(
-          "https://us-central1-citascuba-test.cloudfunctions.net/interviewsSummary/"
-        );
-        console.log(res2.data);
       } catch (err) {
         // Handle Error Here
         console.error(err);

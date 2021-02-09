@@ -15,6 +15,7 @@ const InterviewSummary = () => {
         const res = await axios.get(
           process.env.REACT_APP_BACKEND_URL + "/cases/summary"
         );
+
         if (componentIsMounted) {
           setData(res.data);
           setLoading(false);
