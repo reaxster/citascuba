@@ -13,7 +13,7 @@ const InterviewSummary = () => {
     const getAll = async () => {
       try {
         const res = await axios.get(
-          "https://us-central1-citascuba-test.cloudfunctions.net/interviewsSummary/"
+          process.env.REACT_APP_BACKEND_URL + "/cases/summary"
         );
         if (componentIsMounted) {
           setData(res.data);

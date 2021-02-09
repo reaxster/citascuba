@@ -39,7 +39,7 @@ export default (props) => {
     const postData = async () => {
       try {
         const resp = await axios.post(
-          "https://us-central1-citascuba-test.cloudfunctions.net/interview",
+          process.env.REACT_APP_BACKEND_URL,
           dataToSubmit
         );
         alert(resp.data);

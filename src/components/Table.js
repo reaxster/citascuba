@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MDBDataTable } from "mdbreact";
 import DatabaseFeed from "../Utils/DatabaseFeed";
-import Axios_Table from "../Utils/Axios Requests/Axios_Table";
 import axios from "axios";
 import "./components.css";
 import TableNotes from "./TableNotes";
@@ -16,7 +15,7 @@ export default (props) => {
     const getAll = async () => {
       try {
         const res = await axios.get(
-          "https://us-central1-citascuba-test.cloudfunctions.net/interview"
+          process.env.REACT_APP_BACKEND_URL + "/cases/"
         );
         // console.log(res.data);
         if (componentIsMounted) {
