@@ -7,9 +7,8 @@ import { MDBContainer, MDBBtn } from "mdbreact";
 import "../components/components.css";
 
 export default () => {
-  const reportedVisa = ReportedVisaFeed.data.map((data) => (
-    <ReportedVisas data={data} />
-  ));
+  console.log("--------------HOME PAGE HAS BEEN RENDERED --------------");
+
   return (
     <div>
       <MDBContainer className="bringToFront">

@@ -6,6 +6,7 @@ import axios from "axios";
 import InterviewSummaryNotes from "../components/InterviewSummaryNotes";
 
 const InterviewSummary = () => {
+  console.log("--------------RENDERING INTERVIEW SYMMARY PAGE--------------");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -18,6 +19,7 @@ const InterviewSummary = () => {
         const res = await axios.get(
           process.env.REACT_APP_BACKEND_URL + "/cases/summary"
         );
+        console.log("CASES HAS BEEN RETRIEVED - SUMMARY INTERVIEWS");
 
         if (componentIsMounted) {
           setData(res.data);
@@ -25,6 +27,7 @@ const InterviewSummary = () => {
         }
       } catch (err) {
         // Handle Error Here
+        console.log("ERROR: CASES HAS NOT BEEN RETRIEVED - SUMMARY INTERVIEWS");
         console.error(err);
       }
     };

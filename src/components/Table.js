@@ -7,6 +7,7 @@ import TableNotes from "./TableNotes";
 import Loading from "./Loading";
 
 export default (props) => {
+  console.log("--------------RENDERING TABLE PAGE--------------");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -17,7 +18,8 @@ export default (props) => {
         const res = await axios.get(
           `${process.env.REACT_APP_BACKEND_URL}/cases/`
         );
-        // console.log(res.data);
+        console.log("DATA HAS BEEN RETRIEVED SUCCESSFULLY ON  TABLE");
+        console.log(res.data);
 
         if (componentIsMounted) {
           setData(res.data.cases);
@@ -25,6 +27,7 @@ export default (props) => {
         }
       } catch (err) {
         // Handle Error Here
+        console.log("ERROR HAS OCCURED WHEN RETRIEVING TABLE VALUES");
         console.error(err);
       }
     };

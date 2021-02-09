@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText,
-  MDBCol,
-} from "mdbreact";
+import { MDBCard, MDBCardBody, MDBCol } from "mdbreact";
 
 export default (props) => {
   console.log(props.data);

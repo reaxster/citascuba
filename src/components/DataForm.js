@@ -9,6 +9,7 @@ import CreateRecord from "../Utils/Components Utils/DataForm/CreateRecord";
 import CreateTimestamp from "../Utils/Components Utils/DataForm/CreateTimestamp";
 
 export default (props) => {
+  console.log("--------------RENDERING DATA FORM PAGE--------------");
   const [name, updateName, resetName] = useFormHook("");
   const [dob, updateDOB, resetDOB] = useFormHook(getDateForInput());
   const [email, updateEmail, resetEmail] = useFormHook("");
@@ -34,8 +35,6 @@ export default (props) => {
       timestamp: CreateTimestamp(ent),
     };
 
-    console.log(dataToSubmit);
-
     //TODO: Complete the Chekking for all Fields and Submit
 
     const postData = async () => {
@@ -44,8 +43,11 @@ export default (props) => {
           process.env.REACT_APP_BACKEND_URL + "/cases",
           dataToSubmit
         );
+        console.log("DATA HAS BEEN POSTED - DATA FORM");
         alert(resp.data);
       } catch (err) {
+        console.log("ERROR OCCURRED WHEN POSTING DATA - DATA FORM");
+        console.log(err);
         alert(err);
       }
     };
