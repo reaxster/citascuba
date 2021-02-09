@@ -12,13 +12,10 @@ const InterviewSummary = () => {
     let componentIsMounted = true;
     const getAll = async () => {
       try {
-<<<<<<< HEAD
-        const res = await axios.get("http://127.0.0.1:5000/api/cases/summary");
-=======
         const res = await axios.get(
           process.env.REACT_APP_BACKEND_URL + "/cases/summary"
         );
->>>>>>> ab2973cba0963869e5e3c58f06799db348cccf81
+
         if (componentIsMounted) {
           setData(res.data);
           setLoading(false);
