@@ -58,6 +58,13 @@
   opacity: 0.8;
 }
 
+/******** HOME BUTTON DIMENSIONS ***********/
+.buttonHome {
+  width: 14rem;
+  height: 4rem;
+  background-color: #ad1457 !important;
+}
+
 /**************TABLE************************/
 .tableBorder {
   display: flex;

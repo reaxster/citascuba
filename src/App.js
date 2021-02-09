@@ -6,6 +6,7 @@ import { Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import Loading from "./components/Loading";
+import Footer from "./components/Footer";
 //import FormPage from "./pages/FormPage";
 //import TablePage from "./pages/TablePage";
 //import InterviewSummary from "./pages/InterviewSummary";
@@ -42,7 +43,7 @@ function App() {
           </Switch>
         </Suspense>
       </div>
-      <h1>Footer</h1>
+      <Footer />
     </div>
   );
 }

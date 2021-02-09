@@ -6,16 +6,16 @@ export default () => {
   return (
     <div className="mb-5">
       <Link to="interviewsummary">
-        <MDBBtn>Resumen De Citas</MDBBtn>
+        <MDBBtn className="buttonHome">Resumen De Citas</MDBBtn>
       </Link>
       <Link to="table">
-        <MDBBtn>Todas las Citas</MDBBtn>
+        <MDBBtn className="buttonHome">Todas las Citas</MDBBtn>
       </Link>
       <Link to="form">
-        <MDBBtn>Entrar Mi Cita</MDBBtn>
+        <MDBBtn className="buttonHome">Entrar Mi Cita</MDBBtn>
       </Link>
       <Link to="disclosure">
-        <MDBBtn>Condiciones de Uso</MDBBtn>
+        <MDBBtn className="buttonHome">Condiciones de Uso</MDBBtn>
       </Link>
     </div>
   );

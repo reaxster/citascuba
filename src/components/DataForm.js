@@ -179,7 +179,7 @@ export default (props) => {
           />
         </MDBRow>
         <MDBRow className="d-flex justify-content-center">
-          <MDBBtn color="success" type="submit">
+          <MDBBtn className="buttonHome" type="submit">
             Submit Form
           </MDBBtn>
         </MDBRow>
