@@ -15,3 +15,6 @@ git push -u origin main
 
 #PULLING
 git pull https://github.com/reaxster/citascuba.git
+
+npm install dotenv --save
+REACT_APP_BACKEND_URL=https://citascuba.herokuapp.com/api

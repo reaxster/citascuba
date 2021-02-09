@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MDBDataTable } from "mdbreact";
+import { MDBDataTableV5 } from "mdbreact";
 import DatabaseFeed from "../Utils/DatabaseFeed";
 import axios from "axios";
 import "./components.css";
@@ -15,7 +15,7 @@ export default (props) => {
     const getAll = async () => {
       try {
         const res = await axios.get(
-          process.env.REACT_APP_BACKEND_URL + "/cases"
+          `${process.env.REACT_APP_BACKEND_URL}/cases/`
         );
         // console.log(res.data);
 
@@ -41,14 +41,23 @@ export default (props) => {
     };
 
     table = (
-      <MDBDataTable
-        hover
-        bordered
-        small
-        striped
-        data={dataTable}
-        className="d-flex flex-column d-inline"
-      />
+      <div>
+        <h5>
+          <strong>
+            Entre El dato que desea buscar en la barra de busqueda
+          </strong>
+        </h5>
+        <MDBDataTableV5
+          hover
+          bordered
+          striped
+          data={dataTable}
+          materialSearch
+          searchTop
+          searchBottom={false}
+          className="d-flex flex-column d-inline"
+        />
+      </div>
     );
   }
 

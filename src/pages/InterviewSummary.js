@@ -8,6 +8,8 @@ const InterviewSummary = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  console.log(process.env.REACT_APP_BACKEND_URL + "/cases/summary");
+
   useEffect(() => {
     let componentIsMounted = true;
     const getAll = async () => {
