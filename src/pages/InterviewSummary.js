@@ -35,7 +35,7 @@ const InterviewSummary = () => {
 
   if (!loading)
     reportedVisa = data.map((item) => (
-      <ReportedVisas data={item} key={item.id} />
+      <ReportedVisas data={item} key={item._id} />
     ));
 
   return (

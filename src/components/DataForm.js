@@ -41,7 +41,7 @@ export default (props) => {
     const postData = async () => {
       try {
         const resp = await axios.post(
-          process.env.REACT_APP_BACKEND_URL,
+          process.env.REACT_APP_BACKEND_URL + "/cases",
           dataToSubmit
         );
         alert(resp.data);

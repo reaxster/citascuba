@@ -105,12 +105,12 @@ const Header = () => {
         <MDBNavbarNav right>
           <MDBNavItem className="mx-2" active={active.form}>
             <MDBNavLink to="/form" onClick={handleFormClick}>
-              Form
+              Formulario
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem className="mx-2" active={active.table}>
             <MDBNavLink to="/table" onClick={handleTableClick}>
-              Table
+              Tabla
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem className="mx-2" active={active.waitingTimes}>
@@ -118,7 +118,7 @@ const Header = () => {
               to="/interviewsummary"
               onClick={handleWaitingTimesClick}
             >
-              Waiting Times
+              Resumen
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem active={active.disclosure}>

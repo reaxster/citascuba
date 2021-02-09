@@ -10,6 +10,7 @@ import {
 } from "mdbreact";
 
 export default (props) => {
+  console.log(props.data);
   return (
     <div className="mb-4">
       <MDBCol>
@@ -28,7 +29,7 @@ export default (props) => {
             <h5>CC: {props.data.cc}</h5>
             <h5>Entrevista: {props.data.ent}</h5>
             <h5>Expedite: {props.data.exp}</h5>
-            <h5>Mensual Reportadas: {props.data.monthlyReported}</h5>
+            <h5>Mensual Reportadas: {props.data.count}</h5>
           </MDBCardBody>
         </MDBCard>
       </MDBCol>

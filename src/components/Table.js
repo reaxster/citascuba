@@ -51,6 +51,7 @@ export default (props) => {
           hover
           bordered
           striped
+          small
           data={dataTable}
           materialSearch
           searchTop
@@ -62,7 +63,7 @@ export default (props) => {
   }
 
   return (
-    <div className="m-5">
+    <div className="my-5">
       <h3>
         <strong>Verifique Si Su Record ah sido Añadido</strong>
       </h3>
