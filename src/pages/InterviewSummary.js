@@ -3,6 +3,7 @@ import Loading from "../components/Loading";
 import ReportedVisas from "../components/ReportedVisas";
 import { MDBContainer } from "mdbreact";
 import axios from "axios";
+import InterviewSummaryNotes from "../components/InterviewSummaryNotes";
 
 const InterviewSummary = () => {
   const [data, setData] = useState([]);
@@ -40,7 +41,8 @@ const InterviewSummary = () => {
 
   return (
     <MDBContainer className="jumbotron  mt-5">
-      <h1>Waiing Time Page Comes Here</h1>
+      <h1 className="mb-5">Resumen de Entrevistas</h1>
+      <InterviewSummaryNotes />
       <div className="d-flex flex-row flex-wrap justify-content-center">
         {reportedVisa}
       </div>
