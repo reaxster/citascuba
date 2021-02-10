@@ -44,14 +44,14 @@ export default (props) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: name,
-        dob: convertToMMDDYYY(dob),
+        dob: dob, //convertToMMDDYYY(dob),
         email: email,
         visa: visa,
-        cc: convertToMMDDYYY(cc),
-        ent: convertToMMDDYYY(ent),
-        exp: exp ? "YES" : "NO",
-        record: CreateRecord(name, dob, ent),
-        timestamp: CreateTimestamp(ent),
+        cc: cc, //convertToMMDDYYY(cc),
+        ent: ent, //convertToMMDDYYY(ent),
+        exp: exp, // ? "YES" : "NO",
+        //record: CreateRecord(name, dob, ent),
+        //timestamp: CreateTimestamp(ent),
       }),
     };
     console.log("--REQUEST OPERATION BUILDED - POSTING");
