@@ -7,7 +7,9 @@ import { MDBContainer, MDBBtn } from "mdbreact";
 import "../components/components.css";
 
 export default () => {
-  console.log("--------------HOME PAGE HAS BEEN RENDERED --------------");
+  console.log(
+    "--------------V.3.0 HOME PAGE HAS BEEN RENDERED V.3.0--------------"
+  );
 
   return (
     <div>

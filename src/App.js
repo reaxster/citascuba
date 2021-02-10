@@ -12,6 +12,7 @@ import TablePage from "./pages/TablePage";
 import InterviewSummary from "./pages/InterviewSummary";
 import DisclosurePage from "./pages/DisclosurePage";
 import News from "./pages/News";
+import Test from "./pages/Test";
 
 /*const FormPage = React.lazy(() => import("./pages/FormPage"));
 const TablePage = React.lazy(() => import("./pages/TablePage"));
@@ -30,6 +31,9 @@ function App() {
             <Route exact path="/form" component={() => <FormPage />}></Route>
             <Route exact path="/table" component={() => <TablePage />}></Route>
             <Route exact path="/news" component={() => <News />}></Route>
+            <Route exact path="/test">
+              <Test />
+            </Route>
             <Route
               exact
               path="/interviewsummary"

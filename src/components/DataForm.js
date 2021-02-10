@@ -17,12 +17,14 @@ export default (props) => {
   const [cc, updateCC, resetCC] = useFormHook(getDateForInput());
   const [ent, updateEnt, resetEnt] = useFormHook(getDateForInput());
   const [exp, updateExp] = useToggle(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const [canSubmit, setCanSubmit] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    event.target.className += " was-validated";
+  //TODO: Complete the Chekking for all Fields and Submit
+
+  const postData = async () => {
+    console.log("ENTERED POSTDATA ASYNC FUNCTION");
     const dataToSubmit = {
       name: name,
       dob: convertToMMDDYYY(dob),
@@ -34,25 +36,70 @@ export default (props) => {
       record: CreateRecord(name, dob, ent),
       timestamp: CreateTimestamp(ent),
     };
+    console.log("ENTERED POSTDATA ASYNC FUNCTION - Object converted");
 
-    //TODO: Complete the Chekking for all Fields and Submit
-
-    const postData = async () => {
-      try {
-        const resp = await axios.post(
-          process.env.REACT_APP_BACKEND_URL + "/cases",
-          dataToSubmit
-        );
-        console.log("DATA HAS BEEN POSTED - DATA FORM");
-        alert(resp.data);
-      } catch (err) {
-        console.log("ERROR OCCURRED WHEN POSTING DATA - DATA FORM");
-        console.log(err);
-        alert(err);
-      }
+    // POST request using fetch with async/await
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: name,
+        dob: convertToMMDDYYY(dob),
+        email: email,
+        visa: visa,
+        cc: convertToMMDDYYY(cc),
+        ent: convertToMMDDYYY(ent),
+        exp: exp ? "YES" : "NO",
+        record: CreateRecord(name, dob, ent),
+        timestamp: CreateTimestamp(ent),
+      }),
     };
+    console.log("--REQUEST OPERATION BUILDED - POSTING");
 
-    postData();
+    const response = await fetch(
+      process.env.REACT_APP_BACKEND_URL + "/cases",
+      requestOptions
+    );
+    console.log("--FETCHING DATA COMPLETED");
+    const data = await response.json();
+    data.message !== undefined ? alert(data.message) : alert(data);
+    console.log("---DATA---");
+    data.message !== undefined ? console.log(data.message) : console.log(data);
+
+    /*const data = await response.json();
+    console.log("--FETCHING DATA COMPLETED");
+    console.log("---- DATA RETURNED ----");
+    console.log(JSON.stringify(data));*/
+
+    /* try {
+      console.log("ENTERED TRY BLOCK ASYNC FUNCTION");
+      const resp = await axios.post(
+        process.env.REACT_APP_BACKEND_URL + "/cases",
+        dataToSubmit
+      );
+      console.log("***********DATA HAS BEEN POSTED - DATA FORM");
+      alert(resp.data);
+    } catch (err) {
+      console.log("-----------ENRETED CATCH BLOCK");
+      console.log("************ERROR OCCURRED WHEN POSTING DATA - DATA FORM");
+      console.log(err);
+      alert(err);
+    }
+    console.log("*--EXITING ASYNC");*/
+  };
+
+  const handleSubmit = (event) => {
+    // alert("POR QUE ME DAS CLIICKKKKK!!!!????");
+    event.preventDefault();
+    setSubmitting(true);
+
+    event.target.className += " was-validated";
+
+    console.log("-----CLICK EVENT TRIGGERED - DATA FORM");
+
+    postData()
+      .then(() => console.log("-----DATA PROMISE RETURNED - DATA FORM"))
+      .then(() => setSubmitting(false));
   };
 
   const notesData = {
@@ -74,7 +121,7 @@ export default (props) => {
       <div className="mb-5">
         <Note data={notesData} />
       </div>
-      <form className="needs-validation" onSubmit={handleSubmit} noValidate>
+      <form className="needs-validation" noValidate>
         <MDBRow>
           <MDBCol lg="4" className="mb-4">
             <label htmlFor="form-name">Name and Last Name</label>
@@ -181,7 +228,11 @@ export default (props) => {
           />
         </MDBRow>
         <MDBRow className="d-flex justify-content-center">
-          <MDBBtn className="buttonHome" type="submit">
+          <MDBBtn
+            className="buttonHome"
+            onClick={handleSubmit}
+            disabled={submitting}
+          >
             Submit Form
           </MDBBtn>
         </MDBRow>

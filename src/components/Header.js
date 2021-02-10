@@ -104,6 +104,11 @@ const Header = () => {
         <MDBNavbarNav left></MDBNavbarNav>
         <MDBNavbarNav right>
           <MDBNavItem className="mx-2" active={active.form}>
+            <MDBNavLink to="/test" onClick={handleFormClick}>
+              <strong>TESTING</strong>
+            </MDBNavLink>
+          </MDBNavItem>
+          <MDBNavItem className="mx-2" active={active.form}>
             <MDBNavLink to="/form" onClick={handleFormClick}>
               Formulario
             </MDBNavLink>
