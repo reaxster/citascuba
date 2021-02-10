@@ -13,6 +13,9 @@ import InterviewSummary from "./pages/InterviewSummary";
 import DisclosurePage from "./pages/DisclosurePage";
 import News from "./pages/News";
 import Test from "./pages/Test";
+import Admin_EditCases from "./components/ADMIN/pages/Admin_EditCases";
+
+import AdminPage from "./components/ADMIN/admin_components/AdminPage";
 
 /*const FormPage = React.lazy(() => import("./pages/FormPage"));
 const TablePage = React.lazy(() => import("./pages/TablePage"));
@@ -32,7 +35,7 @@ function App() {
             <Route exact path="/table" component={() => <TablePage />}></Route>
             <Route exact path="/news" component={() => <News />}></Route>
             <Route exact path="/test">
-              <Test />
+              <Admin_EditCases />
             </Route>
             <Route
               exact

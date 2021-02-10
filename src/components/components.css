@@ -3,9 +3,14 @@
   border: red solid 2px;
 }
 
-.shadowT {
+.test .shadowT {
   /* offset-x | offset-y | blur-radius | spread-radius | color */
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+}
+
+.WH {
+  width: 100%;
+  height: 90vh;
 }
 
 .centerX {
@@ -128,6 +133,25 @@
 
 .bringToFront {
   z-index: 9;
+}
+
+/*
+ADMIN COMPONENT*/
+.slider {
+  -webkit-transition: height 0.5s linear;
+  -moz-transition: height 0.5s linear;
+  -ms-transition: height 0.5s linear;
+  -o-transition: height 0.5s linear;
+  transition: height 0.5s linear;
+}
+
+.slider.closed {
+  height: 0px;
+  -webkit-transition: height 0.5s linear;
+  -moz-transition: height 0.5s linear;
+  -ms-transition: height 0.5s linear;
+  -o-transition: height 0.5s linear;
+  transition: height 0.5s linear;
 }
 
 /*

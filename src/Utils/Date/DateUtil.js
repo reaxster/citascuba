@@ -57,6 +57,10 @@ const convertToYYMM = (str) => {
   return str.substr(0, 4) + str.substr(4, 3);
 };
 
+const convertFromMMDDYYYYtoYYYYMMDD = (str) => {
+  return str.substr(6, 4) + "-" + str.substr(0, 3) + str.substr(6, 2);
+};
+
 export {
   getDateForInput,
   getDateDDMMYYY,
@@ -65,4 +69,5 @@ export {
   convertToMMDD,
   convertToYY,
   convertToYYMM,
+  convertFromMMDDYYYYtoYYYYMMDD,
 };
