@@ -93,7 +93,7 @@ export default () => {
       <h1
         style={{ backgroundColor: "#B71C1C", color: "white", padding: "20px" }}
       >
-        <strong>THIS PAGE IS FOR TESTING ONLY THE API</strong>
+        <strong>VERSION 2.0 TESTING CONSOLE</strong>
       </h1>
       <div className="d-flex flex-column justify-content-center align-items-center  w-75 mt-5 mb-5">
         <label htmlFor="testInput">Entra tus Datos Aqui</label>

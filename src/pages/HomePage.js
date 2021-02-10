@@ -14,7 +14,7 @@ export default () => {
   return (
     <div>
       <MDBContainer className="bringToFront">
-        <h1>Bienvenido a nuestra pagina web. </h1>
+        <h1>Bienvenido a nuestra pagina web.</h1>
         <h2>
           <strong>Creada por y para los cubanos</strong>
         </h2>

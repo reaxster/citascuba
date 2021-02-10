@@ -4,103 +4,56 @@ import axios from "axios";
 import Note from "./Note";
 import useFormHook from "../hooks/useFormHook";
 import useToggle from "../hooks/useToggle";
-import { getDateForInput, convertToMMDDYYY } from "../Utils/Date/DateUtil";
-import CreateRecord from "../Utils/Components Utils/DataForm/CreateRecord";
-import CreateTimestamp from "../Utils/Components Utils/DataForm/CreateTimestamp";
 
 export default (props) => {
   console.log("--------------RENDERING DATA FORM PAGE--------------");
   const [name, updateName, resetName] = useFormHook("");
-  const [dob, updateDOB, resetDOB] = useFormHook(getDateForInput());
+  const [dob, updateDOB, resetDOB] = useFormHook("2021-01-01");
   const [email, updateEmail, resetEmail] = useFormHook("");
   const [visa, updateVisa, resetVisa] = useFormHook("");
-  const [cc, updateCC, resetCC] = useFormHook(getDateForInput());
-  const [ent, updateEnt, resetEnt] = useFormHook(getDateForInput());
+  const [cc, updateCC, resetCC] = useFormHook("2021-01-01");
+  const [ent, updateEnt, resetEnt] = useFormHook("2021-01-01");
   const [exp, updateExp] = useToggle(false);
   const [submitting, setSubmitting] = useState(false);
+  const [rerender, setRerender] = useState(false);
 
   const [canSubmit, setCanSubmit] = useState(false);
 
   //TODO: Complete the Chekking for all Fields and Submit
 
   const postData = async () => {
-    console.log("ENTERED POSTDATA ASYNC FUNCTION");
-    const dataToSubmit = {
-      name: name,
-      dob: convertToMMDDYYY(dob),
-      email: email,
-      visa: visa,
-      cc: convertToMMDDYYY(cc),
-      ent: convertToMMDDYYY(ent),
-      exp: exp ? "YES" : "NO",
-      record: CreateRecord(name, dob, ent),
-      timestamp: CreateTimestamp(ent),
-    };
-    console.log("ENTERED POSTDATA ASYNC FUNCTION - Object converted");
-
-    // POST request using fetch with async/await
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: name,
-        dob: dob, //convertToMMDDYYY(dob),
-        email: email,
-        visa: visa,
-        cc: cc, //convertToMMDDYYY(cc),
-        ent: ent, //convertToMMDDYYY(ent),
-        exp: exp, // ? "YES" : "NO",
-        //record: CreateRecord(name, dob, ent),
-        //timestamp: CreateTimestamp(ent),
-      }),
-    };
-    console.log("--REQUEST OPERATION BUILDED - POSTING");
-
-    const response = await fetch(
-      process.env.REACT_APP_BACKEND_URL + "/cases",
-      requestOptions
-    );
-    console.log("--FETCHING DATA COMPLETED");
-    const data = await response.json();
-    data.message !== undefined ? alert(data.message) : alert(data);
-    console.log("---DATA---");
-    data.message !== undefined ? console.log(data.message) : console.log(data);
-
-    /*const data = await response.json();
-    console.log("--FETCHING DATA COMPLETED");
-    console.log("---- DATA RETURNED ----");
-    console.log(JSON.stringify(data));*/
-
-    /* try {
-      console.log("ENTERED TRY BLOCK ASYNC FUNCTION");
+    try {
       const resp = await axios.post(
         process.env.REACT_APP_BACKEND_URL + "/cases",
-        dataToSubmit
+        {
+          name: name,
+          dob: dob,
+          email: email,
+          visa: visa,
+          cc: cc,
+          ent: ent,
+          exp: exp,
+        }
       );
-      console.log("***********DATA HAS BEEN POSTED - DATA FORM");
       alert(resp.data);
     } catch (err) {
-      console.log("-----------ENRETED CATCH BLOCK");
-      console.log("************ERROR OCCURRED WHEN POSTING DATA - DATA FORM");
-      console.log(err);
       alert(err);
     }
-    console.log("*--EXITING ASYNC");*/
   };
 
-  const handleSubmit = (event) => {
-    // alert("POR QUE ME DAS CLIICKKKKK!!!!????");
-    event.preventDefault();
+  useEffect(() => {
+    setSubmitting(false);
+    setRerender(false);
+  }, [rerender]);
+
+  function handleClick(e) {
     setSubmitting(true);
-
-    event.target.className += " was-validated";
-
-    console.log("-----CLICK EVENT TRIGGERED - DATA FORM");
-
-    postData()
-      .then(() => console.log("-----DATA PROMISE RETURNED - DATA FORM"))
-      .then(() => setSubmitting(false));
-  };
+    e.preventDefault();
+    postData();
+    resetEmail();
+    resetName();
+    setRerender(true);
+  }
 
   const notesData = {
     title: "Form Info",
@@ -230,7 +183,7 @@ export default (props) => {
         <MDBRow className="d-flex justify-content-center">
           <MDBBtn
             className="buttonHome"
-            onClick={handleSubmit}
+            onClick={handleClick}
             disabled={submitting}
           >
             Submit Form
