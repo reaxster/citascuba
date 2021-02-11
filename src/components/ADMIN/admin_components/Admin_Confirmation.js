@@ -19,11 +19,13 @@ export default (props) => {
     props.modalHandler();
     setModal(false);
 
-    if (props.is_reload == true) window.location.reload(false);
+    setTimeout(() => {
+      if (props.is_reload == true) window.location.reload(false);
+    }, 200);
   };
 
   return (
-    <div className={"d-flex justify-content-center" + props.className}>
+    <div className={"d-flex justify-content-center " + props.className}>
       <MDBBtn
         style={{
           textAlign: "center",

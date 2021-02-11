@@ -4,6 +4,7 @@ import useFormHook from "../../../hooks/useFormHook";
 import { convertFromMMDDYYYYtoYYYYMMDD } from "../../../Utils/Date/DateUtil";
 import useToggle from "../../../hooks/useToggle";
 import Admin_Confirmation from "./Admin_Confirmation";
+import Modal from "./modal/Modal";
 import axios from "axios";
 
 export default (props) => {
@@ -14,9 +15,17 @@ export default (props) => {
   const [ent, updateEnt, resetEnt] = useFormHook(
     convertFromMMDDYYYYtoYYYYMMDD(props.data.ent)
   );
-  const [exp, updateExp] = useToggle(props.data.exp == "NO" ? false : true);
+  const [exp, updateExp] = useToggle(
+    props.data.exp.localeCompare("No") == 0 ? false : true
+  );
   const [id, updateId] = useState(props.data._id);
   const [submiting, setSubmitting] = useState(false);
+
+  const [showModal, handleShowModal] = useToggle(false);
+
+  console.log("-------------------------");
+  console.log(props.data.exp);
+  console.log(exp);
 
   const updateData = async () => {
     const dataToUpdate = {
@@ -31,17 +40,21 @@ export default (props) => {
         `${process.env.REACT_APP_BACKEND_URL}/cases/${id}`,
         dataToUpdate
       );
-      alert(res.data + " STATUS: " + res.status);
+      handleShowModal(true);
       setSubmitting(false);
     } catch (err) {
       alert(err);
     }
   };
 
+  const handleToggle = (e) => {
+    updateExp(!exp);
+    console.log(exp);
+  };
+
   const handleSubmit = (e) => {
     setSubmitting(true);
     updateData();
-    window.location.reload(false);
   };
 
   return (
@@ -51,6 +64,13 @@ export default (props) => {
       }
       style={{ border: "#f48fb1  solid 2px", borderRadius: 10 }}
     >
+      <Modal
+        handleClose={handleShowModal}
+        show={showModal}
+        message="You record has been updated"
+        is_reload={true}
+      />
+
       <MDBCol>
         <select
           className="browser-default custom-select mt-5"
@@ -94,7 +114,7 @@ export default (props) => {
           label="Expedite"
           checked={exp}
           value={exp}
-          onClick={updateExp}
+          onClick={handleToggle}
           type="checkbox"
           id="checkbox1"
           name="exp"
@@ -106,7 +126,7 @@ export default (props) => {
           isIcon={false}
           color="danger"
           modalMessage="Are you sure you want to update record?"
-          is_reload={true}
+          is_reload={false}
         >
           Update
         </Admin_Confirmation>
