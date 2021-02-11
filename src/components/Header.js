@@ -103,9 +103,9 @@ const Header = () => {
       <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
         <MDBNavbarNav left></MDBNavbarNav>
         <MDBNavbarNav right>
-          <MDBNavItem className="mx-2" active={active.form}>
+          <MDBNavItem className="mx-2" active={active.home}>
             <MDBNavLink to="/test" onClick={handleFormClick}>
-              <strong>TESTING</strong>
+              <strong>Admin</strong>
             </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem className="mx-2" active={active.form}>

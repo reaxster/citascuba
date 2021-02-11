@@ -1,11 +1,49 @@
 import { MDBBtn, MDBCol, MDBInput, MDBRow } from "mdbreact";
-import React from "react";
+import React, { useState } from "react";
+import useFormHook from "../../../hooks/useFormHook";
 import { convertFromMMDDYYYYtoYYYYMMDD } from "../../../Utils/Date/DateUtil";
+import useToggle from "../../../hooks/useToggle";
+import Admin_Confirmation from "./Admin_Confirmation";
+import axios from "axios";
 
 export default (props) => {
-  console.log(
-    "PRINTING DATE+ ----------" + convertFromMMDDYYYYtoYYYYMMDD(props.data.cc)
+  const [visa, updateVisa, resetVisa] = useFormHook(props.data.visa);
+  const [cc, updateCC, resetCC] = useFormHook(
+    convertFromMMDDYYYYtoYYYYMMDD(props.data.cc)
   );
+  const [ent, updateEnt, resetEnt] = useFormHook(
+    convertFromMMDDYYYYtoYYYYMMDD(props.data.ent)
+  );
+  const [exp, updateExp] = useToggle(props.data.exp == "NO" ? false : true);
+  const [id, updateId] = useState(props.data._id);
+  const [submiting, setSubmitting] = useState(false);
+
+  const updateData = async () => {
+    const dataToUpdate = {
+      visa,
+      cc,
+      ent,
+      exp,
+      id,
+    };
+    try {
+      const res = await axios.patch(
+        `${process.env.REACT_APP_BACKEND_URL}/cases/${id}`,
+        dataToUpdate
+      );
+      alert(res.data + " STATUS: " + res.status);
+      setSubmitting(false);
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    setSubmitting(true);
+    updateData();
+    window.location.reload(false);
+  };
+
   return (
     <MDBRow
       className={
@@ -18,8 +56,8 @@ export default (props) => {
           className="browser-default custom-select mt-5"
           name="visa"
           id="form-visa"
-          value={props.data.visa}
-          onChange={props.handleChange}
+          value={visa}
+          onChange={updateVisa}
           required
         >
           <option value="">Select Visa</option>
@@ -40,28 +78,38 @@ export default (props) => {
         </select>{" "}
         <MDBInput
           type="date"
-          value={convertFromMMDDYYYYtoYYYYMMDD(props.data.cc)}
+          value={cc}
           className="m-0 p-0"
-          onChange={props.handleChange}
+          onChange={updateCC}
           name="cc"
         />
         <MDBInput
           type="date"
-          value={convertFromMMDDYYYYtoYYYYMMDD(props.data.ent)}
+          value={ent}
           className="m-0 p-0"
-          onChange={props.handleChange}
+          onChange={updateEnt}
           name="ent"
         />
         <MDBInput
           label="Expedite"
-          checked={props.data.exp.valueOf() === "No".valueOf() ? false : true}
+          checked={exp}
+          value={exp}
+          onClick={updateExp}
           type="checkbox"
           id="checkbox1"
           name="exp"
         />
-        <MDBBtn onClick={props.handleUpdateRecord} disabled={props.submitting}>
+        <Admin_Confirmation
+          className="d-flex justify-content-center"
+          modalHandler={handleSubmit}
+          disableOnSubmit={submiting}
+          isIcon={false}
+          color="danger"
+          modalMessage="Are you sure you want to update record?"
+          is_reload={true}
+        >
           Update
-        </MDBBtn>
+        </Admin_Confirmation>
       </MDBCol>
     </MDBRow>
   );

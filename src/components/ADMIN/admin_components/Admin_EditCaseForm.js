@@ -8,12 +8,6 @@ import useToggle from "../../../hooks/useToggle";
 import useFormHook from "../../../hooks/useFormHook";
 
 export default (props) => {
-  const [submiting, setSubmitting] = useState(false);
-
-  const [reload, setReload] = useState(false);
-  const [visa, updateVisa, resetVisa] = useFormHook("");
-  const [cc, updateCC, resetCC] = useFormHook("2021-01-01");
-  const [ent, updateEnt, resetEnt] = useFormHook("2021-01-01");
   const [editing, setEditing] = useToggle(false);
 
   return (
@@ -26,16 +20,15 @@ export default (props) => {
           <Admin_EditCaseInfoBox data={props.data} />
         </MDBCol>
         <MDBCol size="3" className="">
-          <Admin_EditCaseBTNGroup on_edit={setEditing} />
+          <Admin_EditCaseBTNGroup
+            on_edit={setEditing}
+            setReload={props.setReload}
+            data={props.data}
+          />
         </MDBCol>
       </MDBRow>
       {editing ? (
-        <Admin_EditCaseEdit
-          data={props.data}
-          handleChange={props.handleChange}
-          handleUpdateRecord={props.handleUpdateRecord}
-          submitting={submiting}
-        />
+        <Admin_EditCaseEdit data={props.data} setReload={props.setReload} />
       ) : (
         ""
       )}

@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBRow, MDBCol } from "mdbreact";
+
 import Admin_SideNav from "./Admin_SideNav";
 import "../../components.css";
 export default (props) => {

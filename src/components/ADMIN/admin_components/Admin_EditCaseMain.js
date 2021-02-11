@@ -1,25 +1,25 @@
 import Admin_EditCaseForm from "./Admin_EditCaseForm";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import useFormHook from "../../../hooks/useFormHook";
 
-import { MDBCol } from "mdbreact";
+import { MDBCol, MDBBtn } from "mdbreact";
+
 export default () => {
   const [data, setData] = useState([]);
-  const [submiting, setSubmitting] = useState(false);
 
   useEffect(() => {
     let componentIsMounted = true;
     const getAll = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/cases/`
+          `${process.env.REACT_APP_BACKEND_URL}/cases/notapproved`
         );
-        console.log("DATA HAS BEEN RETRIEVED SUCCESSFULLY ON  EDIT TABLE");
-        //console.log(res.data);
+        console.log("DATA HAS BEEN RETRIEVED SUCCESSFULLY ON  TABLE");
+        console.log(res.data);
 
         if (componentIsMounted) {
           setData(res.data.cases);
-          setSubmitting(false);
         }
       } catch (err) {
         // Handle Error Here
@@ -31,26 +31,9 @@ export default () => {
     return () => (componentIsMounted = false);
   }, []);
 
-  const handleUpdateRecord = (e) => {
-    e.preventDefault();
-    setSubmitting(true);
-  };
-
-  //TODO: Need to Update State to Submit Data
-
-  const handleDataChange = (e) => {
-    console.log({ ...data, [e.target.name]: e.target.value });
-  };
-
   let EditCaseForm = data.map((item) => (
-    <MDBCol md="6" className="mb-5" key={item._id}>
-      <Admin_EditCaseForm
-        data={item}
-        submitting={submiting}
-        setSubmitting={setSubmitting}
-        handleChange={handleDataChange}
-        handleUpdateRecord={handleUpdateRecord}
-      />
+    <MDBCol md="6" key={item._id}>
+      <Admin_EditCaseForm data={item} />
     </MDBCol>
   ));
 
@@ -62,7 +45,14 @@ export default () => {
         </h1>
       </div>
       <div className="d-flex flex-wrap jumbotron pt-2 h-100 overflow-auto h-75 x-3 w-100">
-        {EditCaseForm}
+        {data.length == 0 ? (
+          <h1>
+            No existe ningun record que aprovar. Esto puede deberse a que nadie
+            a puesto informacion nueva o ya todos los records estan aprovados
+          </h1>
+        ) : (
+          EditCaseForm
+        )}
       </div>
     </MDBCol>
   );
