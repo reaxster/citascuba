@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  MDBContainer,
   MDBBtn,
   MDBModal,
   MDBModalBody,
@@ -29,7 +28,6 @@ export default (props) => {
       <MDBBtn
         style={{
           textAlign: "center",
-          width: "80%",
           margin: 0,
           ...props.btnStyle,
         }}

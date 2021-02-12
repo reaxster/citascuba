@@ -34,16 +34,6 @@ const Modal = (props) => {
         </MDBBtn>
       </MDBModalFooter>
     </MDBModal>
-
-    /* <div className={showHideClassName}>
-      <section className="modal-main">
-        <div style={{ width: 200, height: 200, backgroundColor: "red" }}></div>
-        {props.children}
-        <button type="button" onClick={props.handleClose}>
-          Close
-        </button>
-      </section>
-    </div>*/
   );
 };
 

@@ -16,10 +16,10 @@ export default (props) => {
       style={{ border: "#c2185b  solid 1px", borderRadius: 2 }}
     >
       <MDBRow>
-        <MDBCol size="9" className="">
+        <MDBCol size="7" className="">
           <Admin_EditCaseInfoBox data={props.data} />
         </MDBCol>
-        <MDBCol size="3" className="">
+        <MDBCol size="5" className="">
           <Admin_EditCaseBTNGroup
             on_edit={setEditing}
             setReload={props.setReload}

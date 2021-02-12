@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { MDBBtn, MDBIcon } from "mdbreact";
+
 import axios from "axios";
-import Admin_Confirmation from "./Admin_Confirmation";
-import Admin_NoConfirmation from "./Admin_NoConfirmation";
-import Modal from "./modal/Modal";
+import Admin_Confirmation from "./notification and modal/Admin_Confirmation";
+import Admin_NoConfirmation from "./notification and modal/Admin_NoConfirmation";
+import Modal from "./notification and modal/Modal";
 import useToggle from "../../../hooks/useToggle";
 
 export default (props) => {

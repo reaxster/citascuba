@@ -1,4 +1,4 @@
-export default {
+const ReportedVisaFeed = {
   data: [
     {
       type: "CR1/IR1",
@@ -65,3 +65,5 @@ export default {
     },
   ],
 };
+
+export default ReportedVisaFeed;
