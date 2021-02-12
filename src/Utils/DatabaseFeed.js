@@ -1,4 +1,4 @@
-export default {
+const DatabaseFeed = {
   columns: [
     {
       label: "Record",
@@ -32,3 +32,5 @@ export default {
     },
   ],
 };
+
+export default DatabaseFeed;
