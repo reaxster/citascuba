@@ -56,12 +56,12 @@ export default (props) => {
   }
 
   const notesData = {
-    title: "Form Info",
+    title: "Informacion del Formulario",
     list: [
-      "Todos los Campos Deben de ser llenados apropiadamente.",
-      "Despues de llenados, un administrador verificara su informacion y aceptara or denegara su peticion dependiendo si todos los datos entan correctamente",
-      "IMPORTANTE: La fecha es introducida primero el MES, luego el DIA, y luego el año",
-      "Si su visa es expedited, no olvide marcarlo en la ultima parte",
+      "Todos los campos deben ser correctamente llenados.",
+      "Los datos serán verificados por un administrador y el record se permitirá o denegará dependiendo de la veracidad de la información.",
+      "Debe prestar singular atención al formato de la fecha (M/D/A) a la hora de ingresar la información.",
+      "Si su visa es de carácter expedito, no olvide marcarlo en la última casilla.",
     ],
   };
 
@@ -70,7 +70,8 @@ export default (props) => {
       style={{ padding: 50, border: "#C2185B 1px solid" }}
       className="shadow"
     >
-      <h2 className="mb-5">Introdusca la Informacion de su Caso</h2>
+      <h2>Introduzca la Información de su Caso</h2>
+      <hr className="mb-5" />
       <div className="mb-5">
         <Note data={notesData} />
       </div>

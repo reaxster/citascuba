@@ -154,6 +154,38 @@ ADMIN COMPONENT*/
   transition: height 0.5s linear;
 }
 
+.btnAdminFix {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 80vh;
+}
+
+.btnBorder {
+  border: solid red 1px;
+}
+
+/*********SIDE NAV********************/
+.slideMe {
+  position: relative;
+  animation: mymove 1s;
+  animation-iteration-count: 3;
+}
+
+@keyframes mymove {
+  from {
+    font-size: 30px;
+  }
+  to {
+    font-size: 40px;
+  }
+}
+
+.sideMenu {
+  background-color: #880e4f;
+  opacity: 100%;
+}
+
 /*
 Database:
 

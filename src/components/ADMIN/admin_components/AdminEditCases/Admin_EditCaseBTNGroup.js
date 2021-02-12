@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 import axios from "axios";
-import Admin_Confirmation from "./notification and modal/Admin_Confirmation";
-import Admin_NoConfirmation from "./notification and modal/Admin_NoConfirmation";
-import Modal from "./notification and modal/Modal";
-import useToggle from "../../../hooks/useToggle";
+import Admin_Confirmation from "../notification and modal/Admin_Confirmation";
+import Admin_NoConfirmation from "../notification and modal/Admin_NoConfirmation";
+import Modal from "../notification and modal/Modal";
+import useToggle from "../../../../hooks/useToggle";
 
 export default (props) => {
   const [submitting, setSubmitting] = useState(false);

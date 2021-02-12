@@ -13,9 +13,9 @@ import InterviewSummary from "./pages/InterviewSummary";
 import DisclosurePage from "./pages/DisclosurePage";
 import News from "./pages/News";
 //import Test from "./pages/Test";
-import Admin_EditCases from "./components/ADMIN/pages/Admin_EditCases";
+import Admin_EditCases from "./components/ADMIN/pages/AdminEditCasesPage";
 
-//import AdminPage from "./components/ADMIN/admin_components/AdminPage";
+//import AdminPageContainer from "./components/ADMIN/admin_components/AdminPageContainer";
 
 /*const FormPage = React.lazy(() => import("./pages/FormPage"));
 const TablePage = React.lazy(() => import("./pages/TablePage"));
