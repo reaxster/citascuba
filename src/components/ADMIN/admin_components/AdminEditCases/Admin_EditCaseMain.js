@@ -31,15 +31,15 @@ export default () => {
   }, []);
 
   let EditCaseForm = data.map((item) => (
-    <MDBCol md="12" lg="6" className="w-100" key={item._id}>
+    <MDBCol md="12" lg="4" className="w-100" key={item._id}>
       <Admin_EditCaseForm data={item} />
     </MDBCol>
   ));
 
   return (
     <MDBCol
-      size="10"
-      className="jumbotron pt-2 h-100 overflow-auto h-75 x-3 w-100"
+      size="11"
+      className="jumbotron pt-2 h-100 overflow-auto h-75  w-100"
     >
       <div className="red darken-4 text-white">
         <h1>

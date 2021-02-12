@@ -49,6 +49,7 @@
   border: 2px dashed #f44336;
   border-radius: 10px;
 }
+
 /****************HEADER**************/
 .header {
   background-color: #880e4f;
@@ -169,15 +170,15 @@ ADMIN COMPONENT*/
 .slideMe {
   position: relative;
   animation: mymove 1s;
-  animation-iteration-count: 3;
+  animation-iteration-count: 5;
 }
 
 @keyframes mymove {
   from {
-    font-size: 30px;
+    left: 0px;
   }
   to {
-    font-size: 40px;
+    left: 15px;
   }
 }
 

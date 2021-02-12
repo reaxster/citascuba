@@ -17,9 +17,9 @@ export default (props) => {
         <div className="mr-3 ">
           <MDBIcon icon="info-circle" size="2x" style={{ color: "#FF6F00" }} />
         </div>
-        <h4>
+        <h5>
           <strong>{props.data.title}</strong>
-        </h4>
+        </h5>
       </div>
 
       <hr style={{ width: "80%" }} />

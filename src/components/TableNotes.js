@@ -1,26 +1,26 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default () => {
   return (
     <div className="justifyText warningBorder p-3 mb-5">
       <p>
-        Con el objetivo de proteger su informacion, sus nombres no son mostrados
-        en esta tabla. Si usted desea saber si su caso ya esta registrado en
-        esta tabla, puede entrar su numero de record en la barra de busqueda. Su
-        numero de Record es su fecha de nacimiento y fecha de entrevista
-        combinados.
+        Con el objetivo de proteger su privacidad, sus nombres no son mostrados
+        en la tabla. Para confirmar que su caso se encuentra registrado, debe
+        introducir su número de record en la barra de búsqueda, de no aparecer,
+        es probable que su información aún no haya sido verificada y/o aprobada
+        por la administración. Se les recomienda esperar un plazo de 24 horas
+        para reinsertar sus datos. Trabajamos para que los nuevos records sean
+        añadidos lo antes posible, siempre atendiendo a la disponibilidad de la
+        administración para chequearlos.
       </p>
 
-      <strong>Por ejemplo</strong>
-      <ol>
-        <li>Fecha De Nacimiento: 07/20/1865</li>
-        <li>Fecha de Entrevista: 07/03/2021 </li>
-        <li>Su Sumero de Record es: 0720186507032021</li>
-        <li>
-          Recuerde las fechas aqui mostradas estan en el formato de
-          <strong> mes/dia/año - mm/dd/yyyy</strong>
-        </li>
-      </ol>
+      <p>
+        <Link to="#" className="my-2">
+          <strong>Click Aqui Para Obtener Su Numero De Record</strong>
+        </Link>
+      </p>
+
       <p>
         <strong>
           Si Usted no ve su record en esta tabla es porque no ah sido aprovado

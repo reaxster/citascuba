@@ -12,8 +12,8 @@ export default (props) => {
           <strong>Record</strong>
         </h5>
         <p className="legendText">
-          Es el numero de record en nuestra base de datos. Es una combinacion de
-          su gecha de nacimiento y la fecha de su caso cerrado.
+          Record: este número es el que se muestra en nuestra base de datos. Es
+          una combinación de su fecha de nacimiento y la de su caso cerrado.
         </p>
         <div className="legend1 allLegendItems" />
       </div>
@@ -23,8 +23,9 @@ export default (props) => {
           <strong>VISA</strong>
         </h5>
         <p className="legendText">
-          Es el tipo de Visa el cual el NVC le ah asignado. La velocidad de su
-          caso depende en algunas ocasiones del tipo de visa.
+          Visa: es el tipo de visa por la cual usted se encuentra aplicando. El
+          tiempo de procesamiento de su caso depende en gran medida de la
+          categoría de su visa.
         </p>
         <div className="legend2 allLegendItems " />
       </div>
@@ -34,8 +35,8 @@ export default (props) => {
           <strong>CC</strong>
         </h5>
         <p className="legendText">
-          CC (Caso Cerrado) es la fecha en la que el caso fue completado y
-          enviado a la embajada donde le daran una fecha de entrevista.
+          CC (Caso Cerrado): es la fecha en la que se completó su caso y fue
+          enviado a la embajada donde se dará cita su entrevista
         </p>
         <div className="legend3 allLegendItems " />
       </div>
@@ -45,8 +46,9 @@ export default (props) => {
           <strong>ENT</strong>
         </h5>
         <p className="legendText">
-          (Interview Date) Esto es la fecha de la entrevista confirmada por la
-          embajada de Guyana o cualquier otro lado.
+          ENT (fecha de entrevista): es la fecha de la entrevista previamente
+          agendada y confirmada en la embajada de Georgetown, Guyana o cualquier
+          otra.
         </p>
         <div className="legend4 allLegendItems " />
       </div>
@@ -56,8 +58,9 @@ export default (props) => {
           <strong>EXP</strong>
         </h5>
         <p className="legendText">
-          EXP (Expedited Case), esto demuestra si el caso fue expedited o si fue
-          un caso normal. Casos expedited son mas rapidos.
+          EXP (Caso expedito): es la condición que tiene un caso de inmigración
+          de ser finalizado antes del tiempo promedio establecido para su
+          procesamiento.
         </p>
         <div className="legend5 allLegendItems " />
       </div>

@@ -12,8 +12,8 @@ export default (props) => {
 
   return (
     <div
-      className="jumbotron py-2 my-2 mx-1 w-100"
-      style={{ border: "#c2185b  solid 1px", borderRadius: 2 }}
+      className="my-3  p-1 w-100"
+      style={{ border: "#c2185b  solid 2px", borderRadius: 3 }}
     >
       <MDBRow>
         <MDBCol size="7" className="">
@@ -27,11 +27,13 @@ export default (props) => {
           />
         </MDBCol>
       </MDBRow>
-      {editing ? (
-        <Admin_EditCaseEdit data={props.data} setReload={props.setReload} />
-      ) : (
-        ""
-      )}
+      <div className="d-flex  justify-content-center ">
+        {editing ? (
+          <Admin_EditCaseEdit data={props.data} setReload={props.setReload} />
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

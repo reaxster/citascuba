@@ -6,11 +6,12 @@ export default (props) => {
   };
 
   return (
-    <div className={"d-flex justify-content-center " + props.className}>
+    <div className={props.className}>
       <MDBBtn
         style={{
           textAlign: "center",
           margin: 0,
+          width: "90%",
           ...props.btnStyle,
         }}
         color={props.color}

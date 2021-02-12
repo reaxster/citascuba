@@ -60,7 +60,7 @@ export default (props) => {
   return (
     <MDBRow
       className={
-        "d-flex flex-md-row flex-column justify-content-center  justify-content-md-around align-items-md-center"
+        "d-flex shadow flex-md-row flex-column justify-content-center  justify-content-md-around align-items-md-center w-75 my-3"
       }
       style={{ border: "#f48fb1  solid 2px", borderRadius: 10 }}
     >
@@ -71,9 +71,13 @@ export default (props) => {
         is_reload={true}
       />
 
-      <MDBCol>
+      <MDBCol className="mt-2">
+        <h5>
+          <strong>Update Info</strong>
+        </h5>
+        <hr />
         <select
-          className="browser-default custom-select mt-5"
+          className="browser-default custom-select mt-4"
           name="visa"
           id="form-visa"
           value={visa}

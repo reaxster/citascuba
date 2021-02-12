@@ -51,9 +51,9 @@ export default (props) => {
     approveData();
   };
 
-  const iconStyle = { fontSize: "25px" };
+  const iconStyle = { fontSize: "20px" };
   return (
-    <div className="d-flex flex-column justify-content-center align-items-center align-items-md-stretch">
+    <div>
       <Modal
         handleClose={handleShowModalDelete}
         show={showModalDelete}
@@ -87,7 +87,7 @@ export default (props) => {
         color="danger"
         modalMessage="Confirm you want to DELETE this record"
       >
-        <i className="far fa-trash-alt" style={iconStyle} />
+        <i className="far fa-trash-alt" size="2x" style={iconStyle} />
       </Admin_Confirmation>
     </div>
   );

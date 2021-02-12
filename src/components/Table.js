@@ -47,9 +47,10 @@ export default (props) => {
       <div>
         <h5>
           <strong>
-            Entre El dato que desea buscar en la barra de busqueda
+            Escriba en la Barra de Búsqueda los Datos de su Interés
           </strong>
         </h5>
+        <hr />
         <MDBDataTableV5
           hover
           bordered
@@ -67,11 +68,14 @@ export default (props) => {
 
   return (
     <div className="my-5">
-      <h3>
-        <strong>Verifique Si Su Record ah sido Añadido</strong>
-      </h3>
+      <hr />
+      <h4>
+        <strong>Verifique si su Record ha Sido Añadido </strong>
+      </h4>
       <TableNotes />
+      <hr />
       {table}
+      <hr />
     </div>
   );
 };

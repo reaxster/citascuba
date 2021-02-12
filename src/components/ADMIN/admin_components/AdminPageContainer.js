@@ -5,16 +5,13 @@ import Admin_SideNav from "./Admin_SideNav";
 import "../../components.css";
 const AdminPageContainer = (props) => {
   return (
-    <div className="d-flex flex-row justify-content-lg-center justify-content-around just WH">
-      <MDBCol size="1 d-flex  justify-content-end  justify-content-md-center">
+    <div className="d-flex flex-row justify-content-center justify-content-around just WH">
+      <div style={{ width: "5%" }}>
         <Admin_SideNav />
-      </MDBCol>
-      <MDBCol
-        size="11"
-        className="d-flex justify-content-md-center justify-content-sm-around justify-content-end mt-1"
-      >
+      </div>
+      <div className="d-flex justify-content-center mt-1 w-100">
         {props.children}
-      </MDBCol>
+      </div>
     </div>
   );
 };

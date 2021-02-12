@@ -56,7 +56,7 @@ export default (props) => {
   }
 
   const notesData = {
-    title: "Informacion del Formulario",
+    title: "Acerca del del Formulario",
     list: [
       "Todos los campos deben ser correctamente llenados.",
       "Los datos serán verificados por un administrador y el record se permitirá o denegará dependiendo de la veracidad de la información.",

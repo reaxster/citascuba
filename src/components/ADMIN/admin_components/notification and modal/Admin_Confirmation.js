@@ -24,16 +24,17 @@ export default (props) => {
   };
 
   return (
-    <div className={"d-flex justify-content-center " + props.className}>
+    <div className={props.className}>
       <MDBBtn
         style={{
           textAlign: "center",
           margin: 0,
+          width: "90%",
           ...props.btnStyle,
         }}
         color={props.color}
         onClick={toggle(14)}
-        className={"d-flex justify-content-center m-1"}
+        className={"d-flex justify-content-center  m-1"}
         disabled={props.disableOnSubmit}
       >
         {props.children}
