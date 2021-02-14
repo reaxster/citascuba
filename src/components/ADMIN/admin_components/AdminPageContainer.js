@@ -5,7 +5,7 @@ import Admin_SideNav from "./Admin_SideNav";
 import "../../components.css";
 const AdminPageContainer = (props) => {
   return (
-    <div className="d-flex flex-row justify-content-center justify-content-around just WH">
+    <div className="d-flex flex-row justify-content-center justify-content-around WH">
       <div style={{ width: "5%" }}>
         <Admin_SideNav />
       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useReducer } from "react";
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -9,132 +9,131 @@ import {
   MDBCollapse,
   MDBIcon,
 } from "mdbreact";
-import { Link } from "react-router-dom";
+import { AuthContext } from "../contexs/useAuthContext";
 import "./components.css";
 
+const handleTabChange = (state, action) => {
+  const defaultState = {
+    home: false,
+    form: false,
+    table: false,
+    waitingTimes: false,
+    disclosure: false,
+    admin: false,
+    login: false,
+  };
+
+  switch (action.type) {
+    case "HOME":
+      return { ...defaultState, home: true };
+    case "FORM":
+      return { ...defaultState, form: true };
+    case "TABLE":
+      return { ...defaultState, table: true };
+    case "VISASUMMARY":
+      return { ...defaultState, waitingTimes: true };
+    case "DISCLOSURE":
+      return { ...defaultState, disclosure: true };
+    case "ADMIN":
+      return { ...defaultState, admin: true };
+    case "LOGIN":
+      return { ...defaultState, login: true };
+    default:
+      return state;
+  }
+};
+
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [active, setActive] = useState({
+  const auth = useContext(AuthContext);
+
+  const [state, dispatch] = useReducer(handleTabChange, {
     home: true,
     form: false,
     table: false,
     waitingTimes: false,
     disclosure: false,
+    admin: false,
+    login: false,
   });
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleChangeTab = (e) => {
+    dispatch({ type: e.target.name });
+    console.log(e.target.name);
+    setIsOpen(false);
+  };
 
   const toggleCollapse = () => {
     setIsOpen(!isOpen);
   };
 
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
-
-  const handleHomeClick = () => {
-    setActive({
-      home: true,
-      form: false,
-      table: false,
-      waitingTimes: false,
-      disclosure: false,
-    });
-    closeMenu();
-  };
-
-  const handleFormClick = () => {
-    setActive({
-      home: false,
-      form: true,
-      table: false,
-      waitingTimes: false,
-      disclosure: false,
-    });
-    closeMenu();
-  };
-
-  const handleTableClick = () => {
-    setActive({
-      home: false,
-      form: false,
-      table: true,
-      waitingTimes: false,
-      disclosure: false,
-    });
-    closeMenu();
-  };
-
-  const handleWaitingTimesClick = () => {
-    setActive({
-      home: false,
-      form: false,
-      table: false,
-      waitingTimes: true,
-      disclosure: false,
-    });
-    closeMenu();
-  };
-
-  const handleDisclosureClick = () => {
-    setActive({
-      home: false,
-      form: false,
-      table: false,
-      waitingTimes: false,
-      disclosure: true,
-    });
-    closeMenu();
-  };
-
   return (
     <MDBNavbar className="header" dark expand="md">
-      <MDBNavbarBrand>
-        <MDBNavLink
-          className="whiteLink"
-          to="/"
-          onClick={handleHomeClick}
-          active={active.home}
-        >
-          <strong>
-            <MDBIcon icon="home" size="1x" />
-          </strong>
-        </MDBNavLink>
-      </MDBNavbarBrand>
-      <MDBNavbarToggler onClick={toggleCollapse} />
-      <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
-        <MDBNavbarNav left></MDBNavbarNav>
-        <MDBNavbarNav right>
-          <MDBNavItem className="mx-2" active={active.home}>
-            <MDBNavLink to="/test" onClick={handleFormClick}>
-              <strong>Admin</strong>
+      <MDBNavbarNav left>
+        <MDBNavbarBrand>
+          <MDBNavItem className="mx-2" active={state.home}>
+            <MDBNavLink
+              className="whiteLink"
+              to="/"
+              onClick={handleChangeTab}
+              name="HOME"
+            >
+              <MDBIcon icon="home" size="1x" />
             </MDBNavLink>
           </MDBNavItem>
-          <MDBNavItem className="mx-2" active={active.form}>
-            <MDBNavLink to="/form" onClick={handleFormClick}>
+        </MDBNavbarBrand>
+      </MDBNavbarNav>
+
+      <MDBNavbarToggler onClick={toggleCollapse} />
+      <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
+        <MDBNavbarNav right>
+          <MDBNavItem className="mx-2" active={state.form}>
+            <MDBNavLink to="/form" name="FORM" onClick={handleChangeTab}>
               Formulario
             </MDBNavLink>
           </MDBNavItem>
-          <MDBNavItem className="mx-2" active={active.table}>
-            <MDBNavLink to="/table" onClick={handleTableClick}>
+
+          <MDBNavItem className="mx-2" active={state.table}>
+            <MDBNavLink to="/table" name="TABLE" onClick={handleChangeTab}>
               Tabla
             </MDBNavLink>
           </MDBNavItem>
-          <MDBNavItem className="mx-2" active={active.waitingTimes}>
+
+          <MDBNavItem className="mx-2" active={state.waitingTimes}>
             <MDBNavLink
               to="/interviewsummary"
-              onClick={handleWaitingTimesClick}
+              name="VISASUMMARY"
+              onClick={handleChangeTab}
             >
               Resumen
             </MDBNavLink>
           </MDBNavItem>
-          <MDBNavItem active={active.disclosure}>
+
+          <MDBNavItem active={state.disclosure}>
             <MDBNavLink
               className="mx-2"
               to="/disclosure"
-              onClick={handleDisclosureClick}
+              name="DISCLOSURE"
+              onClick={handleChangeTab}
             >
               Disclosure
             </MDBNavLink>
           </MDBNavItem>
+
+          <MDBNavItem className="mx-2" active={state.login}>
+            <MDBNavLink to="/login" name="LOGIN" onClick={handleChangeTab}>
+              Login
+            </MDBNavLink>
+          </MDBNavItem>
+
+          {auth.isLoggedIn && (
+            <MDBNavItem className="mx-2" active={state.admin}>
+              <MDBNavLink to="/admin" name="ADMIN" onClick={handleChangeTab}>
+                Admin Dashboard
+              </MDBNavLink>
+            </MDBNavItem>
+          )}
         </MDBNavbarNav>
       </MDBCollapse>
     </MDBNavbar>

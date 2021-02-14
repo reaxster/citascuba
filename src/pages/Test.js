@@ -90,7 +90,8 @@ export default () => {
 
   return (
     <div className="container jumbotron d-flex flex-column justify-content-center align-items-center">
-      <h1
+      <h1>TESTING BOUNDS</h1>
+      {/* <h1
         style={{ backgroundColor: "#B71C1C", color: "white", padding: "20px" }}
       >
         <strong>VERSION 2.0 TESTING CONSOLE</strong>
@@ -113,7 +114,7 @@ export default () => {
           POST Datos
         </MDBBtn>
       </div>
-      {htmlContent}
+      {htmlContent}*/}
     </div>
   );
 };

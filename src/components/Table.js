@@ -67,7 +67,7 @@ export default (props) => {
   }
 
   return (
-    <div className="my-5">
+    <div>
       <hr />
       <h4>
         <strong>Verifique si su Record ha Sido Añadido </strong>

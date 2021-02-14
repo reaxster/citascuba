@@ -14,10 +14,12 @@ export default () => {
   return (
     <div>
       <MDBContainer className="bringToFront mt-5">
-        <h1>Bienvenidos a nuestra página web</h1>
-        <h3>
-          <strong>Creada por y para los cubanos</strong>
-        </h3>
+        <h1>
+          <strong>Bienvenidos a Nuestro Sitio Web</strong>
+        </h1>
+        <h5>
+          <strong>Creado Por y Para los Cubanos</strong>
+        </h5>
         <hr className="mb-5" />
         <div className="flag mt-5" />
         <div className="jumbotron">
