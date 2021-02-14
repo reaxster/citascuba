@@ -5,8 +5,8 @@ import "../components/components.css";
 
 export default () => {
   return (
-    <MDBContainer className="centerXYColumn mt-5">
-      <div className="m-5">
+    <MDBContainer>
+      <div className="my-5">
         <DataForm />
       </div>
     </MDBContainer>
