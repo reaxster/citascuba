@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   MDBContainer,
   MDBRow,
@@ -9,11 +9,48 @@ import {
   MDBBtn,
   MDBLink,
 } from "mdbreact";
+import axios from "axios";
+import useFormHook from "../hooks/useFormHook";
 
 import { AuthContext } from "../contexs/useAuthContext";
+import { Redirect } from "react-router-dom";
 
 const Login = () => {
   const auth = useContext(AuthContext);
+
+  const [email, setEmail, resetEmail] = useFormHook("");
+  const [password, setPassword, resetPassword] = useFormHook("");
+  const [isSubmit, setIsSubmit] = useState(false);
+
+  const login = async () => {
+    try {
+      const res = await axios.post(
+        process.env.REACT_APP_BACKEND_URL + "/users/login",
+        {
+          email: email,
+          password: password,
+        }
+      );
+
+      if (res.status === 200) {
+        auth.setUserinfo(res.data.user);
+        auth.login();
+        console.log("YOU ARE LOGGED IN");
+      }
+    } catch (err) {
+      console.log("ERROR ON LOGIN");
+      console.log(err);
+    }
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setIsSubmit(true);
+    login();
+    setIsSubmit(false);
+    /*   resetEmail();
+    resetPassword();*/
+  };
 
   return (
     <MDBContainer>
@@ -26,12 +63,33 @@ const Login = () => {
                   <strong>Login</strong>
                 </h3>
               </div>
-              <MDBInput label="Your email" group type="text" validate />
-              <MDBInput label="Your password" group type="password" validate />
+              <MDBInput
+                label="Your email"
+                group
+                type="text"
+                value={email}
+                onChange={setEmail}
+                validate
+              />
+              <MDBInput
+                label="Your password"
+                group
+                type="password"
+                value={password}
+                onChange={setPassword}
+                validate
+              />
 
               <MDBRow className="d-flex flex-column justify-content-center align-items-center  mb-4">
                 <MDBCol md="6" className=" mb-2 ">
-                  <MDBBtn className="z-depth-1" color="pink" rounded block>
+                  <MDBBtn
+                    className="z-depth-1"
+                    color="pink"
+                    rounded
+                    block
+                    disabled={isSubmit}
+                    onClick={handleLogin}
+                  >
                     Login
                   </MDBBtn>
                 </MDBCol>

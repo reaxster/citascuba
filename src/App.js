@@ -32,6 +32,7 @@ const News = React.lazy(() => import("./pages/News"));*/
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userInfo, setUserinfo] = useState({});
 
   const login = useCallback(() => {
     setIsLoggedIn(true);
@@ -51,7 +52,25 @@ function App() {
         <Route exact path="/admin">
           <AdminMainPage />
         </Route>
-        <Redirect to="/"></Redirect>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
+        <Route exact path="/form">
+          <FormPage />
+        </Route>
+        <Route exact path="/table">
+          <TablePage />
+        </Route>
+        <Route exact path="/news">
+          <News />
+        </Route>
+        <Route exact path="/interviewsummary">
+          <InterviewSummary />
+        </Route>
+        <Route exact path="/disclosure">
+          <DisclosurePage />
+        </Route>
+        <Redirect to="/admin" />
       </React.Fragment>
     );
   } else {
@@ -90,7 +109,13 @@ function App() {
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn: isLoggedIn, login: login, logout: logout }}
+      value={{
+        isLoggedIn: isLoggedIn,
+        login: login,
+        logout: logout,
+        userInfo: userInfo,
+        setUserinfo: setUserinfo,
+      }}
     >
       <div className="App">
         <Header />
