@@ -13,7 +13,6 @@ import axios from "axios";
 import useFormHook from "../hooks/useFormHook";
 
 import { AuthContext } from "../contexs/useAuthContext";
-import { Redirect } from "react-router-dom";
 
 const Login = () => {
   const auth = useContext(AuthContext);
@@ -33,8 +32,9 @@ const Login = () => {
       );
 
       if (res.status === 200) {
-        auth.setUserinfo(res.data.user);
-        auth.login();
+        console.log(res.data);
+        auth.login(res.data.userId, res.data.token);
+        console.log(res.data);
         console.log("YOU ARE LOGGED IN");
       }
     } catch (err) {

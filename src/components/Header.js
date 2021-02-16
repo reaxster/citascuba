@@ -21,6 +21,7 @@ const handleTabChange = (state, action) => {
     disclosure: false,
     admin: false,
     login: false,
+    news: false,
   };
 
   switch (action.type) {
@@ -38,6 +39,8 @@ const handleTabChange = (state, action) => {
       return { ...defaultState, admin: true };
     case "LOGIN":
       return { ...defaultState, login: true };
+    case "NEWS":
+      return { ...defaultState, news: true };
     default:
       return state;
   }
@@ -54,6 +57,7 @@ const Header = () => {
     disclosure: false,
     admin: false,
     login: false,
+    news: false,
   });
 
   const [isOpen, setIsOpen] = useState(false);
@@ -89,6 +93,12 @@ const Header = () => {
       <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
         <MDBNavbarNav right>
           <MDBNavItem className="mx-2" active={state.form}>
+            <MDBNavLink to="/news" name="NEWS" onClick={handleChangeTab}>
+              Noticias
+            </MDBNavLink>
+          </MDBNavItem>
+
+          <MDBNavItem className="mx-2" active={state.form}>
             <MDBNavLink to="/form" name="FORM" onClick={handleChangeTab}>
               Formulario
             </MDBNavLink>
@@ -121,16 +131,26 @@ const Header = () => {
             </MDBNavLink>
           </MDBNavItem>
 
-          <MDBNavItem className="mx-2" active={state.login}>
-            <MDBNavLink to="/login" name="LOGIN" onClick={handleChangeTab}>
-              Login
-            </MDBNavLink>
-          </MDBNavItem>
+          {!auth.isLoggedIn && (
+            <MDBNavItem className="mx-2" active={state.login}>
+              <MDBNavLink to="/login" name="LOGIN" onClick={handleChangeTab}>
+                Login
+              </MDBNavLink>
+            </MDBNavItem>
+          )}
 
           {auth.isLoggedIn && (
-            <MDBNavItem className="mx-2" active={state.admin}>
+            <MDBNavItem className="mx-2" active={state.admin || state.login}>
               <MDBNavLink to="/admin" name="ADMIN" onClick={handleChangeTab}>
                 Admin Dashboard
+              </MDBNavLink>
+            </MDBNavItem>
+          )}
+
+          {auth.isLoggedIn && (
+            <MDBNavItem className="mx-2" onClick={auth.logout}>
+              <MDBNavLink to="/login" name="HOME" onClick={handleChangeTab}>
+                Logout
               </MDBNavLink>
             </MDBNavItem>
           )}
