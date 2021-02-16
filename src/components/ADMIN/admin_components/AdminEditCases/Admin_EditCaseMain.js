@@ -1,18 +1,28 @@
 import Admin_EditCaseForm from "./Admin_EditCaseForm";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
+
+import { AuthContext } from "../../../../contexs/useAuthContext";
 
 import { MDBCol } from "mdbreact";
 
 export default () => {
+  const auth = useContext(AuthContext);
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
     let componentIsMounted = true;
+    console.log(auth.token);
     const getAll = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/cases/notapproved`
+          `${process.env.REACT_APP_BACKEND_URL}/cases/notapproved`,
+          {
+            headers: {
+              Authorization: `Bearer ${auth.token}`,
+            },
+          }
         );
         console.log("DATA HAS BEEN RETRIEVED SUCCESSFULLY ON  TABLE");
         console.log(res.data);

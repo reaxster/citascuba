@@ -121,16 +121,26 @@ const Header = () => {
             </MDBNavLink>
           </MDBNavItem>
 
-          <MDBNavItem className="mx-2" active={state.login}>
-            <MDBNavLink to="/login" name="LOGIN" onClick={handleChangeTab}>
-              Login
-            </MDBNavLink>
-          </MDBNavItem>
+          {!auth.isLoggedIn && (
+            <MDBNavItem className="mx-2" active={state.login}>
+              <MDBNavLink to="/login" name="LOGIN" onClick={handleChangeTab}>
+                Login
+              </MDBNavLink>
+            </MDBNavItem>
+          )}
 
           {auth.isLoggedIn && (
-            <MDBNavItem className="mx-2" active={state.admin}>
+            <MDBNavItem className="mx-2" active={state.admin || state.login}>
               <MDBNavLink to="/admin" name="ADMIN" onClick={handleChangeTab}>
                 Admin Dashboard
+              </MDBNavLink>
+            </MDBNavItem>
+          )}
+
+          {auth.isLoggedIn && (
+            <MDBNavItem className="mx-2" onClick={auth.logout}>
+              <MDBNavLink to="/login" name="HOME" onClick={handleChangeTab}>
+                Logout
               </MDBNavLink>
             </MDBNavItem>
           )}

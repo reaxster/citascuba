@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { Suspense, useState, useCallback } from "react";
+import React, { Suspense, useState, useCallback, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 //@COMPONENTS AND PAGE IMPORTS
@@ -12,7 +12,8 @@ import TablePage from "./pages/TablePage";
 import InterviewSummary from "./pages/InterviewSummary";
 import DisclosurePage from "./pages/DisclosurePage";
 import News from "./pages/News";
-//import Test from "./pages/Test";
+
+//ADMIN PAGES
 import Admin_EditCases from "./components/ADMIN/pages/AdminEditCasesPage";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
@@ -21,6 +22,7 @@ import AdminMainPage from "./components/ADMIN/pages/AdminMainPage";
 import Test from "./pages/Test";
 
 import { AuthContext } from "./contexs/useAuthContext";
+import { useAuthHook } from "./hooks/useAuthHook";
 
 //import AdminPageContainer from "./components/ADMIN/admin_components/AdminPageContainer";
 
@@ -31,27 +33,40 @@ const DisclosurePage = React.lazy(() => import("./pages/DisclosurePage"));
 const News = React.lazy(() => import("./pages/News"));*/
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const login = useCallback(() => {
-    setIsLoggedIn(true);
-  }, []);
-
-  const logout = useCallback(() => {
-    setIsLoggedIn(false);
-  }, []);
+  const { token, login, logout, userId } = useAuthHook();
 
   let routes;
-  if (isLoggedIn) {
+  if (token) {
     routes = (
       <React.Fragment>
         <Route exact path="/test">
           <Test />
         </Route>
+        <Route exact path="/managecases">
+          <Admin_EditCases />
+        </Route>
         <Route exact path="/admin">
           <AdminMainPage />
         </Route>
-        <Redirect to="/"></Redirect>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
+        <Route exact path="/form">
+          <FormPage />
+        </Route>
+        <Route exact path="/table">
+          <TablePage />
+        </Route>
+        <Route exact path="/news">
+          <News />
+        </Route>
+        <Route exact path="/interviewsummary">
+          <InterviewSummary />
+        </Route>
+        <Route exact path="/disclosure">
+          <DisclosurePage />
+        </Route>
+        <Redirect to="/admin" />
       </React.Fragment>
     );
   } else {
@@ -90,7 +105,13 @@ function App() {
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn: isLoggedIn, login: login, logout: logout }}
+      value={{
+        isLoggedIn: !!token,
+        token: token,
+        login: login,
+        logout: logout,
+        userId: userId,
+      }}
     >
       <div className="App">
         <Header />

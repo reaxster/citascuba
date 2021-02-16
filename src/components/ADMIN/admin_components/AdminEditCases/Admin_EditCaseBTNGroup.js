@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import axios from "axios";
 import Admin_Confirmation from "../notification and modal/Admin_Confirmation";
 import Admin_NoConfirmation from "../notification and modal/Admin_NoConfirmation";
 import Modal from "../notification and modal/Modal";
 import useToggle from "../../../../hooks/useToggle";
+import { AuthContext } from "../../../../contexs/useAuthContext";
 
 export default (props) => {
+  const auth = useContext(AuthContext);
+
   const [submitting, setSubmitting] = useState(false);
   const [showModalApprove, handleShowModalApprove] = useToggle(false);
   const [showModalDelete, handleShowModalDelete] = useToggle(false);
@@ -14,8 +17,14 @@ export default (props) => {
   const deleteData = async () => {
     try {
       const res = await axios.delete(
-        `${process.env.REACT_APP_BACKEND_URL}/cases/${props.data._id}`
+        `${process.env.REACT_APP_BACKEND_URL}/cases/${props.data._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+          },
+        }
       );
+
       setSubmitting(false);
       handleShowModalDelete(true);
     } catch (err) {
@@ -31,7 +40,12 @@ export default (props) => {
     try {
       const res = await axios.patch(
         `${process.env.REACT_APP_BACKEND_URL}/cases/approve/${props.data._id}`,
-        dataToUpdate
+        dataToUpdate,
+        {
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+          },
+        }
       );
 
       setSubmitting(false);

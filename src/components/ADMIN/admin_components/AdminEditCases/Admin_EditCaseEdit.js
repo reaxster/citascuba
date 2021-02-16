@@ -1,13 +1,16 @@
 import { MDBCol, MDBInput, MDBRow } from "mdbreact";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import useFormHook from "../../../../hooks/useFormHook";
 import { convertFromMMDDYYYYtoYYYYMMDD } from "../../../../Utils/Date/DateUtil";
 import useToggle from "../../../../hooks/useToggle";
 import Admin_Confirmation from "../notification and modal/Admin_Confirmation";
 import Modal from "../notification and modal/Modal";
 import axios from "axios";
+import { AuthContext } from "../../../../contexs/useAuthContext";
 
 export default (props) => {
+  const auth = useContext(AuthContext);
+
   const [visa, updateVisa, resetVisa] = useFormHook(props.data.visa);
   const [cc, updateCC, resetCC] = useFormHook(
     convertFromMMDDYYYYtoYYYYMMDD(props.data.cc)
@@ -23,10 +26,6 @@ export default (props) => {
 
   const [showModal, handleShowModal] = useToggle(false);
 
-  console.log("-------------------------");
-  console.log(props.data.exp);
-  console.log(exp);
-
   const updateData = async () => {
     const dataToUpdate = {
       visa,
@@ -38,7 +37,12 @@ export default (props) => {
     try {
       const res = await axios.patch(
         `${process.env.REACT_APP_BACKEND_URL}/cases/${id}`,
-        dataToUpdate
+        dataToUpdate,
+        {
+          headers: {
+            Authorization: `Bearer ${auth.token}`,
+          },
+        }
       );
       handleShowModal(true);
       setSubmitting(false);

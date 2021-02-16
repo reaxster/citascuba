@@ -169,11 +169,11 @@ export default (props) => {
             </select>
           </MDBCol>
         </MDBRow>
-        <MDBRow className="mb-4 d-flex justify-content-center flex-column align-items-center">
+        <MDBRow className="m-4 d-flex justify-content-center flex-column align-items-center">
           <label htmlFor="form-exp">Visa Expedite</label>
-          <input
-            style={{ width: "20px", height: "20px" }}
+          <MDBInput
             className="form-control"
+            size="lg"
             type="checkbox"
             name="exp"
             id="form-exp"
