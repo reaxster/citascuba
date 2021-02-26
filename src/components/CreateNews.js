@@ -62,7 +62,7 @@ const CreateNews = () => {
       )}
 
       <MDBCard>
-        {!show && (
+        {!show && auth.isLoggedIn && (
           <MDBBtn className="m-0" onClick={toggleShow}>
             Create News
           </MDBBtn>

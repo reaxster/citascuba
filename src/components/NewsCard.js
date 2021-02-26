@@ -117,7 +117,7 @@ const NewsCard = (props) => {
 
   /*------------END OF REDUCER LOGIC--------------------------*/
 
-  const editModeInput = (
+  const editModeInput = auth.isLoggedIn && (
     <div>
       <CustomInput
         placeholder="IMG URL"
@@ -171,29 +171,33 @@ const NewsCard = (props) => {
   );
 
   return (
-    <MDBCol lg="6" size="12" className="my-3">
-      <ModalWithAction
-        handleConfirm={handleSave}
-        handleClose={handleCloseModal}
-        show={state.save}
-        message="Do you want to UPDATE this news?"
-        is_reload={true}
-      />
+    <MDBCol lg="5" xl="4" md="6" size="12" className="my-3 p-2">
+      {auth.isLoggedIn && (
+        <ModalWithAction
+          handleConfirm={handleSave}
+          handleClose={handleCloseModal}
+          show={state.save}
+          message="Do you want to UPDATE this news?"
+          is_reload={true}
+        />
+      )}
 
-      <ModalWithAction
-        handleConfirm={handleDelete}
-        handleClose={handleCloseModal}
-        show={state.delete}
-        message="Do you want to DELETE this news?"
-        onConfirmReload={true}
-      />
+      {auth.isLoggedIn && (
+        <ModalWithAction
+          handleConfirm={handleDelete}
+          handleClose={handleCloseModal}
+          show={state.delete}
+          message="Do you want to DELETE this news?"
+          onConfirmReload={true}
+        />
+      )}
 
-      <MDBCard style={{ width: "100%", height: "48rem" }}>
+      <MDBCard style={{ width: "100%", maxHeight: "45rem" }}>
         {!state.editmode && (
           <MDBCardImage
             top
             src={img}
-            style={{ width: "100%", height: "20rem" }}
+            style={{ width: "100%", height: "17rem" }}
             overlay="white-slight"
             hover
             waves
@@ -238,35 +242,37 @@ const NewsCard = (props) => {
           </ul>
         </div>
 
-        <div>
-          {!state.editmode && (
+        {auth.isLoggedIn && (
+          <div>
+            {!state.editmode && (
+              <MDBBtn
+                name="EDIT"
+                onClick={handleStatusChange}
+                disabled={state.submit}
+              >
+                Edit
+              </MDBBtn>
+            )}
+            {state.editmode && (
+              <MDBBtn
+                color="warning"
+                name="SAVE"
+                onClick={handleStatusChange}
+                disabled={state.submit}
+              >
+                Save
+              </MDBBtn>
+            )}
             <MDBBtn
-              name="EDIT"
+              color="danger"
+              name="DELETE"
               onClick={handleStatusChange}
               disabled={state.submit}
             >
-              Edit
+              Delete
             </MDBBtn>
-          )}
-          {state.editmode && (
-            <MDBBtn
-              color="warning"
-              name="SAVE"
-              onClick={handleStatusChange}
-              disabled={state.submit}
-            >
-              Save
-            </MDBBtn>
-          )}
-          <MDBBtn
-            color="danger"
-            name="DELETE"
-            onClick={handleStatusChange}
-            disabled={state.submit}
-          >
-            Delete
-          </MDBBtn>
-        </div>
+          </div>
+        )}
       </MDBCard>
     </MDBCol>
   );

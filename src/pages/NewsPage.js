@@ -29,8 +29,11 @@ export default () => {
   ));
 
   return (
-    <div className="container jumbotron my-5 d-flex py-3 flex-wrap justify-content-">
+    <div className="container p-0 test d-flex flex-wrap justify-content-between">
       <CreateNews />
+      {displayNews}
+      {displayNews}
+      {displayNews}
       {displayNews}
     </div>
   );

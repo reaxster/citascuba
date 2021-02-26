@@ -37,71 +37,78 @@ function App() {
   const { token, login, logout, userId } = useAuthHook();
 
   let routes;
-  if (token) {
+  if (!!token) {
     routes = (
       <React.Fragment>
-        <Route exact path="/test">
-          <Test />
-        </Route>
-        <Route exact path="/managecases">
-          <Admin_EditCases />
-        </Route>
-        <Route exact path="/admin">
-          <AdminMainPage />
-        </Route>
-        <Route exact path="/">
-          <HomePage />
-        </Route>
-        <Route exact path="/form">
-          <FormPage />
-        </Route>
-        <Route exact path="/table">
-          <TablePage />
-        </Route>
-        <Route exact path="/news">
-          <NewsPage />
-        </Route>
-        <Route exact path="/interviewsummary">
-          <InterviewSummary />
-        </Route>
-        <Route exact path="/disclosure">
-          <DisclosurePage />
-        </Route>
-        <Redirect to="/admin" />
+        <Switch>
+          <Route exact path="/test">
+            <Test />
+          </Route>
+          <Route exact path="/managecases">
+            <Admin_EditCases />
+          </Route>
+          <Route exact path="/admin">
+            <AdminMainPage />
+          </Route>
+          <Route exact path="/login">
+            <AdminMainPage />
+          </Route>
+
+          <Route exact path="/form">
+            <FormPage />
+          </Route>
+          <Route exact path="/table">
+            <TablePage />
+          </Route>
+          <Route exact path="/news">
+            <NewsPage />
+          </Route>
+          <Route exact path="/interviewsummary">
+            <InterviewSummary />
+          </Route>
+          <Route exact path="/disclosure">
+            <DisclosurePage />
+          </Route>
+
+          <Route path="/">
+            <HomePage />
+          </Route>
+        </Switch>
       </React.Fragment>
     );
   } else {
     routes = (
       <React.Fragment>
-        <Route exact path="/">
-          <HomePage />
-        </Route>
-        <Route exact path="/form">
-          <FormPage />
-        </Route>
-        <Route exact path="/table">
-          <TablePage />
-        </Route>
-        <Route exact path="/news">
-          <NewsPage />
-        </Route>
-        <Route exact path="/interviewsummary">
-          <InterviewSummary />
-        </Route>
-        <Route exact path="/disclosure">
-          <DisclosurePage />
-        </Route>
-        <Route exact path="/login">
-          <Login />
-        </Route>
+        <Switch>
+          <Route exact path="/form">
+            <FormPage />
+          </Route>
+          <Route exact path="/table">
+            <TablePage />
+          </Route>
+          <Route exact path="/news">
+            <NewsPage />
+          </Route>
+          <Route exact path="/interviewsummary">
+            <InterviewSummary />
+          </Route>
+          <Route exact path="/disclosure">
+            <DisclosurePage />
+          </Route>
 
-        <Route exact path="/signup">
-          <Signup />
-        </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
 
-        {/*
-        <Redirect to="/" />
-*/}
+          <Route exact path="/signup">
+            <Signup />
+          </Route>
+
+          <Route path="/">
+            <HomePage />
+          </Route>
+        </Switch>
+        {/* <Redirect to="/" />*/}
       </React.Fragment>
     );
   }
@@ -160,7 +167,7 @@ function App() {
               />
             </MDBCol>
           </div>
-          <Switch>{routes}</Switch>
+          {routes}
         </Suspense>
         <Footer />
       </div>

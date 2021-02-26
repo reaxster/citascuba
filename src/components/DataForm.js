@@ -5,17 +5,24 @@ import Note from "./Note";
 import useFormHook from "../hooks/useFormHook";
 import useToggle from "../hooks/useToggle";
 
+//TODO: CAPTCHA VERIFICATION
+import Captcha from "./Captcha";
+
 export default (props) => {
+  function onChange(value) {
+    console.log("Captcha value:", value);
+  }
+
   console.log("--------------RENDERING DATA FORM PAGE--------------");
   const [name, updateName, resetName] = useFormHook("");
-  const [dob, updateDOB, resetDOB] = useFormHook("2021-01-01");
   const [email, updateEmail, resetEmail] = useFormHook("");
-  const [visa, updateVisa, resetVisa] = useFormHook("");
+  const [visa, updateVisa, resetVisa] = useFormHook("Selecione su Visa");
   const [cc, updateCC, resetCC] = useFormHook("2021-01-01");
   const [ent, updateEnt, resetEnt] = useFormHook("2021-01-01");
-  const [exp, updateExp] = useToggle(false);
+  const [exp, updateExp, resetExp] = useFormHook("No");
   const [submitting, setSubmitting] = useState(false);
   const [rerender, setRerender] = useState(false);
+  const [captcha, setCaptcha] = useState("");
 
   const [canSubmit, setCanSubmit] = useState(false);
 
@@ -27,12 +34,12 @@ export default (props) => {
         process.env.REACT_APP_BACKEND_URL + "/cases",
         {
           name: name,
-          dob: dob,
           email: email,
           visa: visa,
           cc: cc,
           ent: ent,
           exp: exp,
+          captcha: captcha,
         }
       );
       alert(resp.data);
@@ -46,13 +53,15 @@ export default (props) => {
     setRerender(false);
   }, [rerender]);
 
-  function handleClick(e) {
+  function handleSubmit(e) {
     setSubmitting(true);
     e.preventDefault();
     postData();
     resetEmail();
     resetName();
+    resetExp();
     setRerender(true);
+    setCaptcha("");
   }
 
   const notesData = {
@@ -78,7 +87,7 @@ export default (props) => {
       <form className="needs-validation" noValidate>
         <MDBRow>
           <MDBCol lg="4" className="mb-4">
-            <label htmlFor="form-name">Name and Last Name</label>
+            <label htmlFor="form-name">Nombre Y Apellidos</label>
             <input
               className="form-control"
               type="text"
@@ -104,16 +113,17 @@ export default (props) => {
             />
           </MDBCol>
           <MDBCol lg="4" className="mb-4">
-            <label htmlFor="form-dob">Fecha de Nacimiento</label>
-            <input
+            <label htmlFor="form-exp">Visa Expedite</label>{" "}
+            <select
               className="form-control"
-              type="date"
-              name="dob"
-              id="form-dob"
-              value={dob}
-              onChange={updateDOB}
-              required
-            />
+              name="exp"
+              id="form-exp"
+              value={exp}
+              onChange={updateExp}
+            >
+              <option value="No">No</option>
+              <option value="Si">Si</option>
+            </select>
           </MDBCol>
         </MDBRow>
         <MDBRow>
@@ -151,7 +161,7 @@ export default (props) => {
               onChange={updateVisa}
               required
             >
-              <option value=""></option>
+              <option value="">{visa}</option>
               <option value="CR1/IR1">CR1/IR1</option>
               <option value="CR2/IR2">CR2/IR2</option>
               <option value="IR3">IR3</option>
@@ -169,22 +179,12 @@ export default (props) => {
             </select>
           </MDBCol>
         </MDBRow>
-        <MDBRow className="m-4 d-flex justify-content-center flex-column align-items-center">
-          <label htmlFor="form-exp">Visa Expedite</label>
-          <MDBInput
-            className="form-control"
-            size="lg"
-            type="checkbox"
-            name="exp"
-            id="form-exp"
-            value={exp}
-            onChange={updateExp}
-          />
-        </MDBRow>
-        <MDBRow className="d-flex justify-content-center">
+
+        <MDBRow className="d-flex flex-column align-items-center justify-content-center">
+          <Captcha onChange={setCaptcha} />
           <MDBBtn
             className="buttonHome"
-            onClick={handleClick}
+            onClick={handleSubmit}
             disabled={submitting}
           >
             Submit Form

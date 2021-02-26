@@ -22,6 +22,7 @@ const handleTabChange = (state, action) => {
     admin: false,
     login: false,
     news: false,
+    contact: false,
   };
 
   switch (action.type) {
@@ -41,6 +42,8 @@ const handleTabChange = (state, action) => {
       return { ...defaultState, login: true };
     case "NEWS":
       return { ...defaultState, news: true };
+    case "CONTACT":
+      return { ...defaultState, contact: true };
     default:
       return state;
   }
@@ -58,6 +61,7 @@ const Header = () => {
     admin: false,
     login: false,
     news: false,
+    contact: false,
   });
 
   const [isOpen, setIsOpen] = useState(false);
@@ -92,7 +96,7 @@ const Header = () => {
       <MDBNavbarToggler onClick={toggleCollapse} />
       <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
         <MDBNavbarNav right>
-          <MDBNavItem className="mx-2" active={state.form}>
+          <MDBNavItem className="mx-2" active={state.news}>
             <MDBNavLink to="/news" name="NEWS" onClick={handleChangeTab}>
               Noticias
             </MDBNavLink>
@@ -128,6 +132,17 @@ const Header = () => {
               onClick={handleChangeTab}
             >
               Disclosure
+            </MDBNavLink>
+          </MDBNavItem>
+
+          <MDBNavItem active={state.contact}>
+            <MDBNavLink
+              className="mx-2"
+              to="/contact"
+              name="CONTACT"
+              onClick={handleChangeTab}
+            >
+              Contactanos
             </MDBNavLink>
           </MDBNavItem>
 
