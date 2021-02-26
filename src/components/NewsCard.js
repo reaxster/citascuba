@@ -14,6 +14,7 @@ import CustomInput from "./CustomInput";
 import ModalWithAction from "./ADMIN/admin_components/notification and modal/ModalWithAction";
 import { AuthContext } from "../contexs/useAuthContext";
 import axios from "axios";
+import { convertToMMDDYYY } from "../Utils/Date/DateUtil";
 
 /*TODO: Props
  *  img: URL
@@ -50,14 +51,15 @@ const NewsCard = (props) => {
   const [description, updateDescription] = useFormHook(props.data.description);
   const [date, updateDate] = useFormHook(props.data.date);
   const [link, updateLink] = useFormHook(props.data.link);
-  const [category, setCategory] = useFormHook(props.data.category);
+  const [category, updateCategory] = useFormHook(props.data.category);
+  const [source, updateSource] = useFormHook(props.data.source);
 
   /*--------------AXIOS UPDATE POST-----------------------------*/
   const updateNews = async () => {
     try {
       const res = await axios.patch(
         process.env.REACT_APP_BACKEND_URL + `/news/${props.data._id}`,
-        { img, title, description, date, link, category },
+        { img, title, description, date, link, category, source },
         {
           headers: {
             Authorization: `Bearer ${auth.token}`,
@@ -93,11 +95,12 @@ const NewsCard = (props) => {
   });
 
   const handleStatusChange = (e) => {
+    e.preventDefault();
     dispatch({ type: e.target.name });
   };
 
   const handleCloseModal = () => {
-    dispatch({});
+    dispatch({ type: "" });
   };
 
   const handleSave = (e) => {
@@ -148,7 +151,14 @@ const NewsCard = (props) => {
         placeholder="Category"
         icon="fas fa-filter"
         value={category}
-        onChange={setCategory}
+        onChange={updateCategory}
+        type="input"
+      />
+      <CustomInput
+        placeholder="Source"
+        icon="fas fa-filter"
+        value={source}
+        onChange={updateSource}
         type="input"
       />
       <CustomInput
@@ -161,13 +171,13 @@ const NewsCard = (props) => {
   );
 
   return (
-    <MDBCol lg="4" md="6" className="my-3">
+    <MDBCol lg="6" size="12" className="my-3">
       <ModalWithAction
         handleConfirm={handleSave}
         handleClose={handleCloseModal}
         show={state.save}
         message="Do you want to UPDATE this news?"
-        onConfirmReload={true}
+        is_reload={true}
       />
 
       <ModalWithAction
@@ -178,11 +188,12 @@ const NewsCard = (props) => {
         onConfirmReload={true}
       />
 
-      <MDBCard>
+      <MDBCard style={{ width: "100%", height: "48rem" }}>
         {!state.editmode && (
           <MDBCardImage
             top
             src={img}
+            style={{ width: "100%", height: "20rem" }}
             overlay="white-slight"
             hover
             waves
@@ -197,7 +208,7 @@ const NewsCard = (props) => {
               <MDBIcon icon="share-alt" className="black-text" />
             </a>*/}
             <MDBCardTitle>{title}</MDBCardTitle>
-            <MDBIcon far icon="clock" /> {date}
+            <MDBIcon far icon="clock" /> {convertToMMDDYYY(date)}
             <hr />
             <MDBCardText>{description}</MDBCardText>
             <a
@@ -215,14 +226,15 @@ const NewsCard = (props) => {
         <div className="rounded-bottom mdb-color lighten-3 text-center pt-3">
           <ul className="list-unstyled list-inline font-small">
             <li className="list-inline-item pr-2 white-text">
-              <MDBIcon far icon="clock" /> 05/10/2015
+              <MDBIcon far icon="far fa-file-alt" /> {"Fuente: " + source}
             </li>
-            <li className="list-inline-item pr-2">
-              <a href="#!" className="white-text">
-                <MDBIcon far icon="comments" className="mr-1" />
-                12
-              </a>
+            <li className="list-inline-item pr-2 white-text">
+              <MDBIcon far icon="clock" /> {"Fecha " + convertToMMDDYYY(date)}
             </li>
+            {/*     <li className="list-inline-item pr-2 white-text">
+              <MDBIcon far icon="clock" />{" "}
+              {"Categoria " + convertToMMDDYYY(date)}
+            </li>*/}
           </ul>
         </div>
 

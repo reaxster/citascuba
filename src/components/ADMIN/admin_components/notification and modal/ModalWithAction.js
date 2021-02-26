@@ -46,6 +46,7 @@ const Modal = (props) => {
         >
           Confirm
         </MDBBtn>
+
         <MDBBtn
           color="pink darken-4"
           onClick={handleClose}

@@ -16,6 +16,7 @@ const CreateNews = () => {
   const [date, updateDate] = useFormHook("");
   const [link, updateLink] = useFormHook("");
   const [category, setCategory] = useFormHook("");
+  const [source, updateSource] = useFormHook("");
   const [show, toggleShow] = useToggle(false);
 
   const [isCreate, toggleIsCreate] = useToggle(false);
@@ -25,7 +26,7 @@ const CreateNews = () => {
     try {
       const res = await axios.post(
         process.env.REACT_APP_BACKEND_URL + `/news/`,
-        { img, title, description, date, link, category }
+        { img, title, description, date, link, category, source }
         /*{
           headers: {
             Authorization: `Bearer ${auth.token}`,
@@ -47,7 +48,7 @@ const CreateNews = () => {
   return (
     <MDBCol
       size={12}
-      className="my-3 p-0  d-flex flex-column justify-content-center "
+      className="my-3 p-0 d-flex flex-column justify-content-center"
     >
       {isCreate && (
         <ModalWithAction
@@ -105,6 +106,13 @@ const CreateNews = () => {
                 icon="fas fa-filter"
                 value={category}
                 onChange={setCategory}
+                type="input"
+              />
+              <CustomInput
+                placeholder="Source"
+                icon="fas fa-filter"
+                value={source}
+                onChange={updateSource}
                 type="input"
               />
               <CustomInput
