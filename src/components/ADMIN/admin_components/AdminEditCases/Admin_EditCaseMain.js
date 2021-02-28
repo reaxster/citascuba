@@ -34,6 +34,7 @@ export default () => {
         // Handle Error Here
         console.log("ERROR HAS OCCURED WHEN RETRIEVING TABLE VALUES");
         console.error(err);
+        alert("You Do not have Access to this resource\n" + err);
       }
     };
     getAll();

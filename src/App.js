@@ -24,6 +24,7 @@ import Test from "./pages/Test";
 
 import { AuthContext } from "./contexs/useAuthContext";
 import { useAuthHook } from "./hooks/useAuthHook";
+import Contact from "./pages/Contact";
 
 //import AdminPageContainer from "./components/ADMIN/admin_components/AdminPageContainer";
 
@@ -70,6 +71,10 @@ function App() {
             <DisclosurePage />
           </Route>
 
+          <Route exact path="/contact">
+            <Contact />
+          </Route>
+
           <Route path="/">
             <HomePage />
           </Route>
@@ -94,6 +99,10 @@ function App() {
           </Route>
           <Route exact path="/disclosure">
             <DisclosurePage />
+          </Route>
+
+          <Route exact path="/contact">
+            <Contact />
           </Route>
 
           <Route exact path="/login">

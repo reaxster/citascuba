@@ -1,4 +1,12 @@
-import { MDBCol, MDBInput, MDBRow } from "mdbreact";
+import {
+  MDBCol,
+  MDBInput,
+  MDBRow,
+  MDBSelect,
+  MDBSelectInput,
+  MDBSelectOptions,
+  MDBSelectOption,
+} from "mdbreact";
 import React, { useContext, useState } from "react";
 import useFormHook from "../../../../hooks/useFormHook";
 import { convertFromMMDDYYYYtoYYYYMMDD } from "../../../../Utils/Date/DateUtil";
@@ -63,34 +71,34 @@ export default (props) => {
   return (
     <MDBRow
       className={
-        "d-flex shadow flex-md-row flex-column justify-content-center  justify-content-md-around align-items-md-center w-75 my-3"
+        "d-flex shadow flex-md-row flex-column justify-content-center  justify-content-md-around align-items-md-center w-75 my-3 h-100"
       }
       style={{ border: "#f48fb1  solid 2px", borderRadius: 10 }}
     >
-      <Modal
-        handleClose={handleShowModal}
-        show={showModal}
-        message="You record has been updated"
-        is_reload={true}
-      />
+      {showModal && (
+        <Modal
+          handleClose={handleShowModal}
+          show={showModal}
+          message="You record has been updated"
+          is_reload={true}
+        />
+      )}
 
-      <MDBCol className="mt-2">
+      <MDBCol className="mt-2 d-flex flex-column justify-content-between h-100 w-100">
         <h5>
           <strong>Update Info</strong>
         </h5>
         <hr />
 
-        <MDBCol size="12">
-          <label htmlFor="form-visa">Visa Type</label>
+        <div className="d-flex flex-column align-items-start m-0 p-0">
+          <label htmlFor="form-visa">Select your Visa</label>
           <select
-            className="browser-default custom-select mt-4"
-            name="visa"
-            id="form-visa"
             value={visa}
+            id="form-visa"
             onChange={updateVisa}
-            required
+            className="browser-default custom-select"
           >
-            <option value="">Select Visa</option>
+            <option>{visa}</option>
             <option value="CR1/IR1">CR1/IR1</option>
             <option value="CR2/IR2">CR2/IR2</option>
             <option value="IR3">IR3</option>
@@ -106,30 +114,29 @@ export default (props) => {
             <option value="K3">K3</option>
             <option value="K4">K4</option>
           </select>
-        </MDBCol>
-        <MDBCol size="12">
-          <label htmlFor="form-cc">Caso Cerrado</label>
-          <MDBInput
-            type="date"
-            value={cc}
-            id="form-cc"
-            onChange={updateCC}
-            name="cc"
-          />
-        </MDBCol>
-        <div className="test ">
-          <label htmlFor="form-ent">Interview Date</label>
-          <MDBInput
-            type="date"
-            id="form-ent"
-            value={ent}
-            style={{ margin: 1, border: "1px solid red" }}
-            className="form-control p-0"
-            onChange={updateEnt}
-            name="ent"
-          />
         </div>
-        <MDBCol size="12">
+
+        <MDBInput
+          label="Caso Cerrado"
+          type="date"
+          value={cc}
+          id="form-cc"
+          className="form-control"
+          onChange={updateCC}
+          name="cc"
+        />
+
+        <MDBInput
+          label="Interview Date"
+          type="date"
+          id="form-ent"
+          value={ent}
+          className="form-control"
+          onChange={updateEnt}
+          name="ent"
+        />
+
+        <div className="d-flex flex-column align-items-start m-0 p-0">
           <label htmlFor="form-exp">Visa Expedite</label>
           <select
             className="form-control"
@@ -141,7 +148,8 @@ export default (props) => {
             <option value="No">No</option>
             <option value="Si">Si</option>
           </select>
-        </MDBCol>
+        </div>
+
         <Admin_Confirmation
           className="d-flex justify-content-center"
           modalHandler={handleSubmit}
