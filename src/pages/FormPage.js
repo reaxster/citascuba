@@ -1,5 +1,5 @@
 import React from "react";
-import DataForm from "../components/DataForm";
+import DataForm from "../components/form/DataForm";
 import { MDBContainer } from "mdbreact";
 import "../components/components.css";
 

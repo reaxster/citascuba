@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Loading from "../components/Loading";
-import ReportedVisas from "../components/ReportedVisas";
+import Loading from "../components/loading/Loading";
+import ReportedVisas from "../components/interviewSumary/ReportedVisas";
 import { MDBContainer } from "mdbreact";
 import axios from "axios";
-import InterviewSummaryNotes from "../components/InterviewSummaryNotes";
+import InterviewSummaryNotes from "../components/interviewSumary/InterviewSummaryNotes";
 
 const InterviewSummary = () => {
   console.log("--------------RENDERING INTERVIEW SYMMARY PAGE--------------");

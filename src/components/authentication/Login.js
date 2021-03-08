@@ -10,9 +10,9 @@ import {
   MDBLink,
 } from "mdbreact";
 import axios from "axios";
-import useFormHook from "../hooks/useFormHook";
+import useFormHook from "../../hooks/useFormHook";
 
-import { AuthContext } from "../contexs/useAuthContext";
+import { AuthContext } from "../../contexs/useAuthContext";
 
 const Login = () => {
   const auth = useContext(AuthContext);

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { MDBDataTableV5 } from "mdbreact";
-import DatabaseFeed from "../Utils/DatabaseFeed";
+import DatabaseFeed from "../../Utils/DatabaseFeed";
 import axios from "axios";
-import "./components.css";
+import "../components.css";
 import TableNotes from "./TableNotes";
-import Loading from "./Loading";
+import Loading from "../loading/Loading";
 
 export default (props) => {
   console.log("--------------RENDERING TABLE PAGE--------------");

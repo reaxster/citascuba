@@ -1,6 +1,6 @@
 import React from "react";
 
-const CustomInput = (props) => {
+const CustomNewsInput = (props) => {
   return (
     <div className="input-group px-2 my-2">
       <div className="input-group-prepend">
@@ -29,4 +29,4 @@ const CustomInput = (props) => {
   );
 };
 
-export default CustomInput;
+export default CustomNewsInput;

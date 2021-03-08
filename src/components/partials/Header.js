@@ -9,8 +9,8 @@ import {
   MDBCollapse,
   MDBIcon,
 } from "mdbreact";
-import { AuthContext } from "../contexs/useAuthContext";
-import "./components.css";
+import { AuthContext } from "../../contexs/useAuthContext";
+import "../components.css";
 
 const handleTabChange = (state, action) => {
   const defaultState = {

@@ -194,6 +194,11 @@ ADMIN COMPONENT*/
   opacity: 100%;
 }
 
+/*DISCLOSURE TEXT**/
+.justifyAllTerms {
+  text-align: justify;
+}
+
 /*
 Database:
 

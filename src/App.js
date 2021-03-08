@@ -4,10 +4,10 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { MDBIcon, MDBCol } from "mdbreact";
 
 //@COMPONENTS AND PAGE IMPORTS
-import Header from "./components/Header";
+import Header from "./components/partials/Header";
 import HomePage from "./pages/HomePage";
-import Loading from "./components/Loading";
-import Footer from "./components/Footer";
+import Loading from "./components/loading/Loading";
+import Footer from "./components/partials/Footer";
 import FormPage from "./pages/FormPage";
 import TablePage from "./pages/TablePage";
 import InterviewSummary from "./pages/InterviewSummary";
@@ -16,8 +16,8 @@ import NewsPage from "./pages/NewsPage";
 
 //ADMIN PAGES
 import Admin_EditCases from "./components/ADMIN/pages/AdminEditCasesPage";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
+import Login from "./components/authentication/Login";
+import Signup from "./components/authentication/Signup";
 import AdminMainPage from "./components/ADMIN/pages/AdminMainPage";
 
 import Test from "./pages/Test";

@@ -10,7 +10,7 @@ import {
   MDBBtn,
 } from "mdbreact";
 
-import { AuthContext } from "../contexs/useAuthContext";
+import { AuthContext } from "../../contexs/useAuthContext";
 
 const Signup = () => {
   const auth = useContext(AuthContext);

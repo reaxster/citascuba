@@ -1,8 +1,8 @@
 import React from "react";
-import ReportedVisas from "../components/ReportedVisas";
+import ReportedVisas from "../components/interviewSumary/ReportedVisas";
 import ReportedVisaFeed from "../Utils/ReportedVisaFeed";
-import HomeText from "../components/HomeText";
-import HomeBtnPanel from "../components/HomeBtnPanel";
+import HomeText from "../components/home/HomeText";
+import HomeBtnPanel from "../components/home/HomeBtnPanel";
 import { MDBContainer, MDBBtn } from "mdbreact";
 import "../components/components.css";
 

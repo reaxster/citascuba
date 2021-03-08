@@ -9,12 +9,12 @@ import {
   MDBCol,
   MDBIcon,
 } from "mdbreact";
-import useFormHook from "../hooks/useFormHook";
-import CustomInput from "./CustomInput";
-import ModalWithAction from "./ADMIN/admin_components/notification and modal/ModalWithAction";
-import { AuthContext } from "../contexs/useAuthContext";
+import useFormHook from "../../hooks/useFormHook";
+import CustomNewsInput from "./CustomNewsInput";
+import ModalWithAction from "../ADMIN/admin_components/notification and modal/ModalWithAction";
+import { AuthContext } from "../../contexs/useAuthContext";
 import axios from "axios";
-import { convertToMMDDYYY } from "../Utils/Date/DateUtil";
+import { convertToMMDDYYY } from "../../Utils/Date/DateUtil";
 
 /*TODO: Props
  *  img: URL
@@ -119,49 +119,49 @@ const NewsCard = (props) => {
 
   const editModeInput = auth.isLoggedIn && (
     <div>
-      <CustomInput
+      <CustomNewsInput
         placeholder="IMG URL"
         icon="fas fa-image"
         type="input"
         value={img}
         onChange={updateImg}
       />
-      <CustomInput
+      <CustomNewsInput
         placeholder="Title"
         icon="far fa-file-alt"
         type="input"
         value={title}
         onChange={updateTitle}
       />
-      <CustomInput
+      <CustomNewsInput
         placeholder="Date: mm/dd/yyyy"
         icon="far fa-calendar-alt"
         type="date"
         value={date}
         onChange={updateDate}
       />
-      <CustomInput
+      <CustomNewsInput
         placeholder="News Link"
         icon="fas fa-link"
         value={link}
         onChange={updateLink}
         type="input"
       />
-      <CustomInput
+      <CustomNewsInput
         placeholder="Category"
         icon="fas fa-filter"
         value={category}
         onChange={updateCategory}
         type="input"
       />
-      <CustomInput
+      <CustomNewsInput
         placeholder="Source"
         icon="fas fa-filter"
         value={source}
         onChange={updateSource}
         type="input"
       />
-      <CustomInput
+      <CustomNewsInput
         placeholder="Description"
         icon="fas fa-align-left"
         value={description}

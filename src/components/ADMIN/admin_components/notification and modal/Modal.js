@@ -12,6 +12,10 @@ const Modal = (props) => {
   const handleClose = () => {
     props.handleClose();
 
+    if (props.toggleRedirect) {
+      props.toggleRedirect();
+    }
+
     setTimeout(() => {
       if (props.is_reload == true) window.location.reload(false);
     }, 200);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import NewsCard from "../components/NewsCard";
-import CreateNews from "../components/CreateNews";
+import NewsCard from "../components/news/NewsCard";
+import CreateNews from "../components/news/CreateNews";
 import axios from "axios";
 import { MDBCol } from "mdbreact";
 import Admin_EditCaseForm from "../components/ADMIN/admin_components/AdminEditCases/Admin_EditCaseForm";
@@ -29,11 +29,8 @@ export default () => {
   ));
 
   return (
-    <div className="container p-0 test d-flex flex-wrap justify-content-between">
+    <div className="container p-0 d-flex flex-wrap justify-content-between">
       <CreateNews />
-      {displayNews}
-      {displayNews}
-      {displayNews}
       {displayNews}
     </div>
   );

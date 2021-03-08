@@ -1,6 +1,6 @@
 import React from "react";
-import Table from "../components/Table";
-import TableLegend from "../components/TableLegend";
+import Table from "../components/table/Table";
+import TableLegend from "../components/table/TableLegend";
 import { MDBContainer } from "mdbreact";
 
 export default () => {
