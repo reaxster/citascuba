@@ -96,7 +96,7 @@ const Login = () => {
                 <MDBCol md="6" className=" d-flex justify-content-column">
                   <p className="font-small grey-text w-100">
                     No tienes cuenta?
-                    <MDBLink to="signup">Registrate</MDBLink>
+                    <MDBLink to="/signup">Registrate</MDBLink>
                   </p>
                 </MDBCol>
               </MDBRow>

@@ -111,6 +111,7 @@ const Admin_SideNav = (props) => {
             <MDBSideNavLink
               onClick={handleClose}
               className="d-flex justify-content-start"
+              to="/signup"
             >
               Register User
             </MDBSideNavLink>

@@ -23,6 +23,8 @@ export default () => {
   const [showModal, toggleShowModal] = useToggle(false);
   const [redirect, toggleRedirect] = useToggle(false);
 
+  const [tempEmail, setTempEmail] = useState("");
+
   const postMessage = async () => {
     try {
       const res = await axios.post(
@@ -52,6 +54,7 @@ export default () => {
       setValidated(true);
       return;
     }
+    setTempEmail(email);
 
     postMessage();
     toggleShowModal();
@@ -69,7 +72,7 @@ export default () => {
     <div>
       <Modal
         title="Confirmation"
-        message="Su mensaje ha sido enviado"
+        message={`Su mensaje ha sido enviado. Le estaremos enviando un email de confimacion a ${tempEmail} para comprobar que hemos recivido su mensaje. Si usted no recibe su email chequee su carpeta de SPAM o contacte a nuestro administrador directamente a admin@entrevistascuba.com`}
         show={showModal}
         toggleRedirect={toggleRedirect}
         handleClose={toggleShowModal}

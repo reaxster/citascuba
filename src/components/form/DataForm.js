@@ -19,7 +19,7 @@ export default (props) => {
   console.log("--------------RENDERING DATA FORM PAGE--------------");
   const [name, updateName, resetName] = useFormHook("");
   const [email, updateEmail, resetEmail] = useFormHook("");
-  const [visa, updateVisa, resetVisa] = useFormHook("Selecione su Visa");
+  const [visa, updateVisa, resetVisa] = useFormHook("CR1/IR1");
   const [cc, updateCC, resetCC] = useFormHook("2021-01-01");
   const [ent, updateEnt, resetEnt] = useFormHook("2021-01-01");
   const [exp, updateExp, resetExp] = useFormHook("No");
@@ -195,6 +195,7 @@ export default (props) => {
             </a>{" "}
             y acepta recebir notificaciones concernientes a nuestros servicios.
           </h6>
+          <h1>{visa}</h1>
         </MDBRow>
       </form>
     </div>
