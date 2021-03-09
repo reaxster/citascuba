@@ -26,12 +26,12 @@ const CreateNews = () => {
     try {
       const res = await axios.post(
         process.env.REACT_APP_BACKEND_URL + `/news/`,
-        { img, title, description, date, link, category, source }
-        /*{
+        { img, title, description, date, link, category, source },
+        {
           headers: {
             Authorization: `Bearer ${auth.token}`,
           },
-        }*/
+        }
       );
       alert(res.data);
     } catch (err) {

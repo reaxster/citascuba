@@ -171,7 +171,7 @@ const NewsCard = (props) => {
   );
 
   return (
-    <MDBCol lg="5" xl="4" md="6" size="12" className="my-3 p-2">
+    <MDBCol lg="6" md="10" size="12" className="my-3 p-2">
       {auth.isLoggedIn && (
         <ModalWithAction
           handleConfirm={handleSave}
@@ -197,7 +197,7 @@ const NewsCard = (props) => {
           <MDBCardImage
             top
             src={img}
-            style={{ width: "100%", height: "17rem" }}
+            style={{ width: "100%", height: "21rem" }}
             overlay="white-slight"
             hover
             waves

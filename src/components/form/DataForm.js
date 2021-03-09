@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { MDBRow, MDBCol, MDBInput, MDBBtn } from "mdbreact";
+import { MDBRow, MDBCol, MDBInput, MDBBtn, MDBIcon } from "mdbreact";
 import axios from "axios";
 import Note from "../Note";
 import useFormHook from "../../hooks/useFormHook";
@@ -73,6 +73,7 @@ export default (props) => {
   const notesData = {
     title: "Acerca del del Formulario",
     list: [
+      "SOLO ENTRE SUS DATOS SI YA TIENE FECHA DE ENTREVISTA",
       "Todos los campos deben ser correctamente llenados.",
       "Los datos serán verificados por un administrador y el record se permitirá o denegará dependiendo de la veracidad de la información.",
       "Debe prestar singular atención al formato de la fecha (M/D/A) a la hora de ingresar la información.",
@@ -109,7 +110,7 @@ export default (props) => {
     >
       <Modal
         title="Confirmation"
-        message="Su mensaje ha sido enviado"
+        message="Su solicitud ah sido enviada. Le hemos enviado un email confirmando que hemos recibido su solicitud."
         show={showModal}
         toggleRedirect={toggleRedirect}
         handleClose={toggleShowModal}
@@ -121,6 +122,15 @@ export default (props) => {
         <Note data={notesData} />
       </div>
       <form className="needs-validation" noValidate>
+        <div className="d-flex justify-content-center align-items-center">
+          <MDBIcon icon="info-circle" size="2x" style={{ color: "#FF6F00" }} />
+          <h5 className="red-text mx-2">
+            <strong>
+              SOLO ENTRE SUS DATOS SI YA TIENE FECHA DE ENTREVISTA
+            </strong>
+          </h5>
+        </div>
+        <hr />
         <MDBRow>
           <DataFormInput
             value={name}
@@ -179,7 +189,7 @@ export default (props) => {
         </MDBRow>
 
         <MDBRow className="d-flex flex-column align-items-center justify-content-center">
-          <Captcha onChange={setCaptcha} />
+          {/* <Captcha onChange={setCaptcha} />*/}
 
           <MDBBtn
             className="buttonHome mt-4"
