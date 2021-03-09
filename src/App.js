@@ -19,6 +19,7 @@ import Admin_EditCases from "./components/ADMIN/pages/AdminEditCasesPage";
 import Login from "./components/authentication/Login";
 import Signup from "./components/authentication/Signup";
 import AdminMainPage from "./components/ADMIN/pages/AdminMainPage";
+import Messages from "./pages/Messages";
 
 import Test from "./pages/Test";
 
@@ -38,87 +39,62 @@ function App() {
   const { token, login, logout, userId } = useAuthHook();
 
   let routes;
+
+  const commonRoutes = (
+    <Switch>
+      <Route exact path="/messages">
+        <Messages />
+      </Route>
+      <Route exact path="/form">
+        <FormPage />
+      </Route>
+      <Route exact path="/table">
+        <TablePage />
+      </Route>
+      <Route exact path="/news">
+        <NewsPage />
+      </Route>
+      <Route exact path="/interviewsummary">
+        <InterviewSummary />
+      </Route>
+      <Route exact path="/disclosure">
+        <DisclosurePage />
+      </Route>
+
+      <Route exact path="/contact">
+        <Contact />
+      </Route>
+      <Route exact path="/signup">
+        <Signup />
+      </Route>
+      <Route exact path="/login">
+        <Login />
+      </Route>
+
+      <Route path="/">
+        <HomePage />
+      </Route>
+    </Switch>
+  );
+
   if (!!token) {
     routes = (
       <React.Fragment>
         <Switch>
-          <Route exact path="/test">
-            <Test />
-          </Route>
           <Route exact path="/managecases">
             <Admin_EditCases />
           </Route>
           <Route exact path="/admin">
             <AdminMainPage />
           </Route>
-          <Route exact path="/login">
-            <AdminMainPage />
-          </Route>
-
-          <Route exact path="/form">
-            <FormPage />
-          </Route>
-          <Route exact path="/table">
-            <TablePage />
-          </Route>
-          <Route exact path="/news">
-            <NewsPage />
-          </Route>
-          <Route exact path="/interviewsummary">
-            <InterviewSummary />
-          </Route>
-          <Route exact path="/disclosure">
-            <DisclosurePage />
-          </Route>
-
-          <Route exact path="/contact">
-            <Contact />
-          </Route>
-
-          <Route exact path="/signup">
-            <Signup />
-          </Route>
-
-          <Route path="/">
-            <HomePage />
-          </Route>
+          {commonRoutes}
         </Switch>
       </React.Fragment>
     );
   } else {
     routes = (
       <React.Fragment>
-        <Switch>
-          <Route exact path="/form">
-            <FormPage />
-          </Route>
-          <Route exact path="/table">
-            <TablePage />
-          </Route>
-          <Route exact path="/news">
-            <NewsPage />
-          </Route>
-          <Route exact path="/interviewsummary">
-            <InterviewSummary />
-          </Route>
-          <Route exact path="/disclosure">
-            <DisclosurePage />
-          </Route>
-
-          <Route exact path="/contact">
-            <Contact />
-          </Route>
-          <Route exact path="/signup">
-            <Signup />
-          </Route>
-          <Route exact path="/login">
-            <Login />
-          </Route>
-
-          <Route path="/">
-            <HomePage />
-          </Route>
-        </Switch>
+        <Switch>{commonRoutes}</Switch>
         {/* <Redirect to="/" />*/}
       </React.Fragment>
     );
