@@ -195,7 +195,6 @@ export default (props) => {
             </a>{" "}
             y acepta recebir notificaciones concernientes a nuestros servicios.
           </h6>
-          <h1>{visa}</h1>
         </MDBRow>
       </form>
     </div>
