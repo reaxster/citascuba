@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
-import { MDBRow, MDBCol, MDBInput, MDBBtn, MDBIcon } from "mdbreact";
+import { MDBRow, MDBCol, MDBInput, MDBBtn, MDBIcon, MDBLink } from "mdbreact";
 import axios from "axios";
 import Note from "../Note";
 import useFormHook from "../../hooks/useFormHook";
 import useToggle from "../../hooks/useToggle";
+import DataFormInterview from "./DataFormInterview";
 
 //TODO: CAPTCHA VERIFICATION
 import Captcha from "../Captcha";
@@ -26,11 +27,14 @@ export default (props) => {
   const [submitting, setSubmitting] = useState(false);
   const [rerender, setRerender] = useState(false);
   const [captcha, setCaptcha] = useState("");
+  const [hasInterview, updateHasInterview] = useToggle(false);
 
   const [showModal, toggleShowModal] = useToggle(false);
   const [redirect, toggleRedirect] = useToggle(false);
 
   const [canSubmit, setCanSubmit] = useState(false);
+
+  const [showUpdateInterview, toggleShowUpdateInterview] = useToggle(false);
 
   //TODO: Complete the Chekking for all Fields and Submit
 
@@ -43,8 +47,9 @@ export default (props) => {
           email: email,
           visa: visa,
           cc: cc,
-          ent: ent,
+          ent: hasInterview ? ent : "N/A",
           exp: exp,
+          hasInterview: hasInterview,
           captcha: captcha,
         }
       );
@@ -65,7 +70,6 @@ export default (props) => {
     postData();
     resetEmail();
     resetName();
-    resetExp();
     setRerender(true);
     setCaptcha("");
   }
@@ -73,7 +77,7 @@ export default (props) => {
   const notesData = {
     title: "Acerca del del Formulario",
     list: [
-      "SOLO ENTRE SUS DATOS SI YA TIENE FECHA DE ENTREVISTA",
+      "SOLO ENTRE SUS DATOS SI YA TIENE FECHA DE ENTREVISTA O CASO CERRADO",
       "Todos los campos deben ser correctamente llenados.",
       "Los datos serán verificados por un administrador y el record se permitirá o denegará dependiendo de la veracidad de la información.",
       "Debe prestar singular atención al formato de la fecha (M/D/A) a la hora de ingresar la información.",
@@ -116,18 +120,44 @@ export default (props) => {
         handleClose={toggleShowModal}
       />
 
+      <DataFormInterview
+        title="Actualizar Fecha de Entrevista"
+        message="Si previamente ha creado un record con nosotros entonces llene el formulario de abajo. De lo contrario, haga click en cancelar y llene el formulario anterior completo"
+        show={showUpdateInterview}
+        toggleRedirect={toggleRedirect}
+        handleClose={toggleShowUpdateInterview}
+      />
+
       <h2>Introduzca la Información de su Caso</h2>
       <hr className="mb-5" />
       <div className="mb-5">
         <Note data={notesData} />
       </div>
-      <form className="needs-validation" noValidate>
+      <form className="needs-validation" noValidate action="#">
         <div className="d-flex justify-content-center align-items-center">
           <MDBIcon icon="info-circle" size="2x" style={{ color: "#FF6F00" }} />
           <h5 className="red-text mx-2">
             <strong>
-              SOLO ENTRE SUS DATOS SI YA TIENE FECHA DE ENTREVISTA
+              SOLO ENTRE SUS DATOS SI TIENE UN CASO CERRADO O ENTREVISTA
             </strong>
+          </h5>
+        </div>
+        <hr />
+        <div>
+          <h5 className="d-flex justify-content-center">
+            Si ya entro su caso cerrado y desea entrar ahora una fecha de
+            entrevista puede hacerlo{" "}
+            <MDBLink
+              onClick={toggleShowUpdateInterview}
+              className="p-0 m-0 ml-1"
+            >
+              <strong>presinando aqui.</strong>
+            </MDBLink>
+          </h5>
+          <h5>
+            {" "}
+            Si tiene un caso cerrado o un caso cerrado con entrevista entonces
+            complete el formulario que esta debajo
           </h5>
         </div>
         <hr />
@@ -169,14 +199,27 @@ export default (props) => {
             type="date"
           />
 
-          <DataFormInput
-            value={ent}
-            onChange={updateEnt}
-            id="form-ent"
-            label="Fecha de Entrevista"
-            placeholder={ent}
-            type="date"
-          />
+          {!hasInterview && (
+            <DataFormInput
+              value={hasInterview}
+              onChange={updateHasInterview}
+              id="form-exp"
+              label="Tienes Fecha de Entrevista?"
+              type="select"
+              options={expOptions}
+            />
+          )}
+
+          {hasInterview && (
+            <DataFormInput
+              value={ent}
+              onChange={updateEnt}
+              id="form-ent"
+              label="Fecha de Entrevista"
+              placeholder={ent}
+              type="date"
+            />
+          )}
 
           <DataFormInput
             value={visa}
