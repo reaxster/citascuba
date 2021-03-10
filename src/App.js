@@ -19,7 +19,8 @@ import Admin_EditCases from "./components/ADMIN/pages/AdminEditCasesPage";
 import Login from "./components/authentication/Login";
 import Signup from "./components/authentication/Signup";
 import AdminMainPage from "./components/ADMIN/pages/AdminMainPage";
-import Messages from "./pages/Messages";
+import MessagesPage from "./pages/MessagesPage";
+import Message from "./components/messages/Message";
 
 import Test from "./pages/Test";
 
@@ -43,8 +44,11 @@ function App() {
   const commonRoutes = (
     <Switch>
       <Route exact path="/messages">
-        <Messages />
+        <MessagesPage />
       </Route>
+
+      <Route exact path="/messages/:id" component={Message} />
+
       <Route exact path="/form">
         <FormPage />
       </Route>

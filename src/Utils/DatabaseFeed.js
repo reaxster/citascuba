@@ -1,6 +1,12 @@
 const DatabaseFeed = {
   columns: [
     {
+      label: "#",
+      field: "#",
+      sort: "asc",
+      width: 100,
+    },
+    {
       label: "Record",
       field: "record",
       sort: "asc",

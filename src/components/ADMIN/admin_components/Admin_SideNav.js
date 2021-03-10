@@ -155,19 +155,20 @@ const Admin_SideNav = (props) => {
               onClick={handleClose}
               className="d-flex justify-content-start"
             >
-              User Messages
+              User MessagesPage
             </MDBSideNavLink>
             <MDBSideNavLink
               onClick={handleClose}
               className="d-flex justify-content-start"
             >
-              Admin Messages
+              Admin MessagesPage
             </MDBSideNavLink>
             <MDBSideNavLink
               onClick={handleClose}
+              to="/messages"
               className="d-flex justify-content-start"
             >
-              External Messages
+              External MessagesPage
             </MDBSideNavLink>
             <MDBSideNavLink
               onClick={handleClose}
