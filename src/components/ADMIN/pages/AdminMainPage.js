@@ -7,7 +7,7 @@ export default () => {
   return (
     <AdminPageContainer>
       <div className="jumbotron test w-100">
-        <h2>THIS IS THE ADMin DARSHBOARD</h2>
+        <h2>THIS IS THE ADMIN DARSHBOARD</h2>
         <Link to="/managecases">
           <MDBBtn>MANAGE CASES</MDBBtn>
         </Link>

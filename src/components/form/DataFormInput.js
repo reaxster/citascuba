@@ -10,7 +10,11 @@ function DataFormInput(props) {
       </option>
     ));
     return (
-      <MDBCol lg="4" className="mb-4">
+      <MDBCol
+        size={props.size == undefined ? "12" : props.size}
+        md={props.md == undefined ? "4" : props.md}
+        className="mb-4"
+      >
         <label htmlFor={props.id}>{props.label}</label>
         <select
           className="form-control"
@@ -25,7 +29,11 @@ function DataFormInput(props) {
   }
 
   return (
-    <MDBCol size={props.size == undefined ? "4" : props.size} className="mb-4">
+    <MDBCol
+      size={props.size == undefined ? "12" : props.size}
+      md={props.md == undefined ? "4" : props.md}
+      className="mb-4"
+    >
       <label htmlFor={props.id}>{props.label}</label>
       <input
         className="form-control"

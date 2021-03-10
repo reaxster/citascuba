@@ -9,11 +9,15 @@ import React from "react";
 import DataFormInput from "./DataFormInput";
 import useFormHook from "../../hooks/useFormHook";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import useToggle from "../../hooks/useToggle";
+import GetRecord from "./GetRecord";
 
 const DataFormInterview = (props) => {
   //Handle Close and Reload Page Consitionally
   const [ent, updateEnt, resetEnt] = useFormHook("");
   const [record, updateRecord, resetRecord] = useFormHook("");
+  const [showRecordTool, updateShowRecordTool] = useToggle(false);
 
   const patchData = async () => {
     try {
@@ -56,6 +60,7 @@ const DataFormInterview = (props) => {
 
   return (
     <MDBModal isOpen={props.show} centered>
+      <GetRecord show={showRecordTool} handleClose={updateShowRecordTool} />
       <MDBModalHeader toggle={handleClose}>
         {props.icon == !undefined ? (
           <i className={"mr-2 text-warning mr-2 " + props.icon} />
@@ -65,11 +70,20 @@ const DataFormInterview = (props) => {
         {props.title == undefined ? "Notification" : props.title}
       </MDBModalHeader>
       <MDBModalBody>
-        <div>{props.message} </div>
+        <div>
+          Si previamente ha creado un record con nosotros entonces llene el
+          formulario de abajo. De lo contrario, haga click en cancelar y llene
+          el formulario anterior completo. Si no recuerda su record haga click
+          en
+          <Link onClick={updateShowRecordTool} className="mx-2">
+            <strong>Obtener Numero de Record</strong>
+          </Link>
+        </div>
         <hr />
 
         <DataFormInput
           size="12"
+          md="12"
           value={record}
           onChange={updateRecord}
           id="form-record"
@@ -79,6 +93,7 @@ const DataFormInterview = (props) => {
         />
         <DataFormInput
           size="12"
+          md="12"
           value={ent}
           onChange={updateEnt}
           id="form-ent"

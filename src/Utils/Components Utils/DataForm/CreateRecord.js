@@ -1,12 +1,20 @@
-import { convertToYY, convertToMMDD } from "../../Date/DateUtil";
+import { convertToMMDDYY } from "../../Date/DateUtil";
 
-export default (name, dob, ent) => {
+const CreateRecord = (name, visa, cc) => {
   let record = "";
-  if (dob !== undefined && ent !== undefined && name !== undefined) {
-    record = name.substr(0, 2) + convertToYY(dob) + convertToMMDD(ent);
+
+  if (visa.length === 2) visa = visa + visa.charAt(0);
+  else if (visa.length === 3) visa = visa;
+  else if (visa.length > 3) visa = visa.substr(0, 3);
+  else visa = "XXX";
+
+  if (visa !== undefined && cc !== undefined && name !== undefined) {
+    record = visa + name.substr(0, 4) + convertToMMDDYY(cc);
     record = record.toLowerCase();
-    record = record.replaceAll("-", "");
+    record = record.replace(/-/g, "");
   }
 
   return record;
 };
+
+export default CreateRecord;

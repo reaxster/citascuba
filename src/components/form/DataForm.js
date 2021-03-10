@@ -5,6 +5,7 @@ import Note from "../Note";
 import useFormHook from "../../hooks/useFormHook";
 import useToggle from "../../hooks/useToggle";
 import DataFormInterview from "./DataFormInterview";
+import CreateRecord from "../../Utils/Components Utils/DataForm/CreateRecord";
 
 //TODO: CAPTCHA VERIFICATION
 import Captcha from "../Captcha";
@@ -68,10 +69,14 @@ export default (props) => {
     setSubmitting(true);
     e.preventDefault();
     postData();
+  }
+
+  function handleModalClose() {
     resetEmail();
     resetName();
     setRerender(true);
     setCaptcha("");
+    toggleShowModal();
   }
 
   const notesData = {
@@ -91,6 +96,7 @@ export default (props) => {
 
   const expOptions = ["No", "Si"];
   const visaOptions = [
+    "Seleccione una Visa",
     "CR1/IR1",
     "CR2/IR2",
     "IR3",
@@ -114,15 +120,17 @@ export default (props) => {
     >
       <Modal
         title="Confirmation"
-        message="Su solicitud ah sido enviada. Le hemos enviado un email confirmando que hemos recibido su solicitud."
+        message={
+          "Su solicitud ah sido enviada. Le hemos enviado un email confirmando que hemos recibido su solicitud.\n Su numero de record es: " +
+          CreateRecord(name, visa, cc)
+        }
         show={showModal}
         toggleRedirect={toggleRedirect}
-        handleClose={toggleShowModal}
+        handleClose={handleModalClose}
       />
 
       <DataFormInterview
         title="Actualizar Fecha de Entrevista"
-        message="Si previamente ha creado un record con nosotros entonces llene el formulario de abajo. De lo contrario, haga click en cancelar y llene el formulario anterior completo"
         show={showUpdateInterview}
         toggleRedirect={toggleRedirect}
         handleClose={toggleShowUpdateInterview}
@@ -144,21 +152,21 @@ export default (props) => {
         </div>
         <hr />
         <div>
-          <h5 className="d-flex justify-content-center">
+          <h6 className="d-flex flex-column justify-content-center">
             Si ya entro su caso cerrado y desea entrar ahora una fecha de
             entrevista puede hacerlo{" "}
             <MDBLink
               onClick={toggleShowUpdateInterview}
               className="p-0 m-0 ml-1"
             >
-              <strong>presinando aqui.</strong>
+              <strong>Presinando Aqui!</strong>
             </MDBLink>
-          </h5>
-          <h5>
+          </h6>
+          <h6>
             {" "}
             Si tiene un caso cerrado o un caso cerrado con entrevista entonces
             complete el formulario que esta debajo
-          </h5>
+          </h6>
         </div>
         <hr />
         <MDBRow>
@@ -204,7 +212,7 @@ export default (props) => {
               value={hasInterview}
               onChange={updateHasInterview}
               id="form-exp"
-              label="Tienes Fecha de Entrevista?"
+              label="Tienes Entrevista?"
               type="select"
               options={expOptions}
             />

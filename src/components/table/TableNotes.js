@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useToggle from "../../hooks/useToggle";
+import GetRecord from "../form/GetRecord";
 
 export default () => {
+  const [showRecordTool, updateShowRecordTool] = useToggle(false);
+
   return (
     <div className="justifyText warningBorder p-3 mb-5">
+      <GetRecord show={showRecordTool} handleClose={updateShowRecordTool} />
+
       <p>
         Con el objetivo de proteger su privacidad, sus nombres no son mostrados
         en la tabla. Para confirmar que su caso se encuentra registrado, debe
@@ -16,7 +22,7 @@ export default () => {
       </p>
 
       <p>
-        <Link to="#" className="my-2">
+        <Link onClick={updateShowRecordTool} className="my-2">
           <strong>Click Aqui Para Obtener Su Numero De Record</strong>
         </Link>
       </p>
