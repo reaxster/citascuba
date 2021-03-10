@@ -67,9 +67,6 @@ function App() {
       <Route exact path="/signup">
         <Signup />
       </Route>
-      <Route exact path="/login">
-        <Login />
-      </Route>
 
       <Route path="/">
         <HomePage />
@@ -87,6 +84,10 @@ function App() {
           <Route exact path="/admin">
             <AdminMainPage />
           </Route>
+
+          <Route exact path="/login">
+            <AdminMainPage />
+          </Route>
           {commonRoutes}
         </Switch>
       </React.Fragment>
@@ -94,7 +95,13 @@ function App() {
   } else {
     routes = (
       <React.Fragment>
-        <Switch>{commonRoutes}</Switch>
+        <Switch>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          {commonRoutes}
+        </Switch>
+
         {/* <Redirect to="/" />*/}
       </React.Fragment>
     );

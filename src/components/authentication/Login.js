@@ -13,6 +13,7 @@ import axios from "axios";
 import useFormHook from "../../hooks/useFormHook";
 
 import { AuthContext } from "../../contexs/useAuthContext";
+import { Redirect } from "react-router-dom";
 
 const Login = () => {
   const auth = useContext(AuthContext);
@@ -37,6 +38,8 @@ const Login = () => {
         console.log(res.data);
         console.log("YOU ARE LOGGED IN");
       }
+
+      //return <Redirect to="/" />;
     } catch (err) {
       console.log("ERROR ON LOGIN");
       console.log(err);
@@ -48,8 +51,8 @@ const Login = () => {
     setIsSubmit(true);
     login();
     setIsSubmit(false);
-    /*   resetEmail();
-    resetPassword();*/
+    resetEmail();
+    resetPassword();
   };
 
   return (

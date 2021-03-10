@@ -49,7 +49,7 @@ const Signup = () => {
     }
   }
 
-  if (auth.isLoggedIn)
+  if (!auth.isLoggedIn)
     return (
       <MDBContainer>
         <MDBRow className="d-flex justify-content-center my-5">
